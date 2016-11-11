@@ -1,0 +1,105 @@
+{{extend 'layout.html'}}
+
+{{block head}}
+<script src="{{=URL('static', 'js/vue.js')}}"></script>
+<script>
+    var posts_url = "{{=URL('api', 'get_posts')}}";
+    var add_post_url = "{{=URL('api', 'add_post', user_signature=True)}}";
+    var del_post_url = "{{=URL('api', 'del_post', user_signature=True)}}";
+    var edit_post_url = "{{=URL('api', 'edit_post', user_signature=True)}}";
+</script>
+{{end}}
+
+
+<div class="main_content">
+
+    <h2>Posts</h2>
+
+    <div id="vue-div" class="display:none">
+        <div class="button_bar">
+            <button v-if="!is_adding_post" class="btn btn-danger btn-sm" v-on:click="add_post_button()" v-bind:class="{'disabled': !logged_in}">
+            {{=icon_add}}Add post
+            </button>
+            <button v-if="is_adding_post" class="btn btn-warning btn-sm" v-on:click="add_post_button()">
+            {{=icon_cancel}}Cancel
+            </button>
+        </div>
+
+        <div v-if="is_adding_post" id="add_post_div">
+            <form action="#" v-on:submit.prevent="add_post()" class="form-horizontal" enctype="multipart/form-data" method="post">
+                <div class="form-group" id="no_table_artist__row">
+                    <div>
+                        <input class="form-control string" id="no_table_content" v-model="form_content" placeholder="Content" type="text" />
+                        <span class="help-block">Input your post here, if you want to return, click cancel</span>
+                    </div>
+                </div>
+                <div v-if="is_adding_post" v-on:click="add_post_button()" class="form-group" id="submit_record__row">
+                    <div>
+                        <input class="btn btn-primary" id="add_post_submit" type="submit" value="Submit" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="result_table">
+
+            <div class ="posts_style" v-for="post in posts">
+
+            <div class="button_bar">
+                <button v-if="!is_editing_post" class="btn btn-danger btn-sm" v-on:click="edit_post_button" v-bind:class="{'disabled': !logged_in}">
+                    {{=icon_edit}}Edit post
+                </button>
+
+                <div v-if="!is_editing_post"><h2>${post.post_content}</h2></div>
+
+                <button v-if="is_editing_post" class="btn btn-warning btn-sm" v-on:click="edit_post_button()">
+                    {{=icon_cancel}}Cancel
+                </button>
+            </div>
+
+        <div v-if="is_editing_post" id="edit_post_div">
+            <form action="#" v-on:submit.prevent="edit_post(post.id)" class="form-horizontal" enctype="multipart/form-data" method="post">
+                <div class="form-group" id="no_table_artist__row">
+                    <div>
+                        <textarea class="form-control string" id="no_table_content" v-model="edit_content" value="pre-fill" type="text"> </textarea>
+                        <span class="help-block">Edit your post here, refresh to see edit</span>
+                    </div>
+                </div>
+                <div v-if="is_editing_post" v-on:click="edit_post_button()" class="form-group" id="submit_record__row">
+                    <div>
+                        <input class="btn btn-primary" id="edit_post_submit" type="submit" value="Submit" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+                <p style="text-align: left; width:10%; display: inline-block; color:blue">User: ${post.user_email}</p>
+
+                <p style="text-align: center; width:40%;  display: inline-block; color:blue">Created On: ${post.created_on}</p>
+
+                <p style="text-align: center; width:40%; display: inline-block; color:blue">Updated: ${post.updated_on}</p>
+
+                <!-- trash button goes here-->
+                <p style="text-align: center; width:6%; display: inline-block; " v-on:click="delete_post(post.id)">
+                    {{=icon_delete}}
+                </p>
+
+
+            </div>
+
+            <div v-if="has_more" class="show_more">
+
+                <button class="btn btn-default" v-on:click="get_more()">Load more</button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+<script src="{{=URL('static', 'js/default_index.js')}}"></script>
