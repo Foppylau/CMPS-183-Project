@@ -1,4 +1,4 @@
-{{extend 'layout.html'}}
+{{extend 'login_page.html'}}
 
 {{block head}}
 <script src="{{=URL('static', 'js/vue.js')}}"></script>
@@ -10,8 +10,8 @@
 </script>
 {{end}}
 
-
-<div class="main_content">
+<div id="web2py_user_form" class="col-lg-10"></div>
+<div class="main_content col-lg-8">
 
     <h2>Posts</h2>
 
@@ -101,5 +101,6 @@
 
 
 </div>
+        <div id="web2py_user_form" class="col-lg-1"> </div>
 
 <script src="{{=URL('static', 'js/default_index.js')}}"></script>
