@@ -16,28 +16,70 @@
   padding-bottom: 20px;
 }
 
+.site{
+    display:flex;
+}
+.sidebar{
+    height: 100%;
+    width: 290px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #5C7F6E;
+    padding-top: 10px;
+}
+
+.profile{
+    display: block;
+    width:100%;
+    height:200px;
+    bottom-border: solid 3px black;
+
+}
+
+#circle {
+    margin: 0 auto;
+    width: 125px;
+    height: 125px;
+    padding: 0px 0px 0px 3px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 90px;
+    background-image:url("weed.jpg");
+    background-size:cover;
+    border-style:solid;
+}
+
+.profile p{
+    width:120px;
+    margin: 0 auto;
+    padding: 0px 0px 0px 3px;
+    text-decoration-color: red;
+    text-align: center;
+    display: block;
+    transition: 0.3s
+}
+
+.events{
+    border-top-style:solid;
+}
+
+.newEvent{
+    margin: 0 auto;
+    width: 100px;
+}
+
+.eventNames{
+    height:700px;
+   overflow:auto;
+
+}
 /* line 13, ../sass/_main.scss */
 .main_content {
-  display: block;
-  clear: both;
+    flex:1;
 }
-/* line 16, ../sass/_main.scss */
-.main_content .splash_container {
-  text-align: center;
-}
-/* line 18, ../sass/_main.scss */
-.main_content .splash_container .main_splash {
-  color: #aaa;
-  font-size: 1.2em;
-  font-weight: bold;
-  display: inline-block;
-  width: 90%;
-}
-/* line 24, ../sass/_main.scss */
-.main_content .splash_container .main_splash h3 {
-  font-size: 1.1em;
-  color: #aaa;
-}
+
 /* line 27, ../sass/_main.scss */
 .main_content .splash_container .main_splash h3 .fa {
   margin-right: 0.5em;
@@ -151,30 +193,6 @@ h2 {
   font-size: 1.0em;
 }
 
-/* line 2, ../sass/_tables.scss */
-div.result_table table {
-  width: 100%;
-  margin: 1em auto 1em auto;
-}
-/* line 5, ../sass/_tables.scss */
-div.result_table table tr {
-  border-bottom: 1px solid #ddd;
-  text-align: left;
-}
-/* line 8, ../sass/_tables.scss */
-div.result_table table tr:first-child {
-  border-top: 1px solid #ddd;
-}
-/* line 12, ../sass/_tables.scss */
-div.result_table table th {
-  padding: 5px 0.5em 5px 0.5em;
-  background: #dddddd;
-}
-/* line 16, ../sass/_tables.scss */
-div.result_table table td {
-  padding: 4px 0.5em 4px 0.5em;
-}
-
 /* line 22, ../sass/_tables.scss */
 div.table_footer {
   display: block;
@@ -195,11 +213,12 @@ div.table_footer span.pagine.disabled i.fa {
 }
 
 .posts_style {
-  border-color: #cccccc;
-  border-style: solid;
+    border-color: #cccccc;
+    border-style: solid;
   border-width: 1px;
   background: #eeeeee;
-  margin: 20px 0px 20px 0px;
+    margin-bottom: 10px;
+    width: 100%;
   padding: 20px;
   -moz-border-radius: 16px;
   -webkit-border-radius: 16px;
