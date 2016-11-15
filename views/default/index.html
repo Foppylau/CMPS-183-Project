@@ -30,6 +30,11 @@
                 <div class="form-group" id="no_table_artist__row">
                     <div>
                         <input class="form-control string" id="no_table_content" v-model="form_content" placeholder="Content" type="text" />
+                        <input class="form-control string" id="no_table_artist" v-model="form_payer" placeholder="Payer" type="text" />
+                        <input class="form-control string" id="no_table_artist" v-model="form_circle" placeholder="Group" type="text" />
+                        <input class="form-control string" id="no_table_artist" v-model="form_bill" placeholder="Bill Name" type="text" />
+                        <input class="form-control string" id="no_table_artist" v-model="form_price" placeholder="Price: $" type="decimal" />
+                        <input class="form-control string" id="no_table_artist" v-model="form_status" placeholder="Status" type="integer" />
                         <span class="help-block">Input your post here, if you want to return, click cancel</span>
                     </div>
                 </div>
@@ -84,6 +89,13 @@
                 <p style="text-align: center; width:6%; display: inline-block; " v-on:click="delete_post(post.id)">
                     {{=icon_delete}}
                 </p>
+
+                <p>Creator: ${post.creator}</p>
+                <p>Payer: ${post.payer}</p>
+                <p>Group: ${post.circle}</p>
+                <p>Bill Name: ${post.bill}</p>
+                <p>Price: ${post.price}</p>
+                <p>Status: ${post.status}</p>
 
 
             </div>

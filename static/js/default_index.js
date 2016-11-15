@@ -47,7 +47,6 @@ var app = function() {
         $.post(add_post_url,
             {
                 post_content: self.vue.form_content,
-                creator: self.vue.form_creator,
                 payer: self.vue.form_payer,
                 circle: self.vue.form_circle,
                 bill: self.vue.form_bill,
@@ -126,7 +125,6 @@ var app = function() {
             has_more: false,
             form_content: null,
             edit_content: null,
-            form_creator: null,
             form_payer: null,
             form_circle: null,
             form_bill: null,
