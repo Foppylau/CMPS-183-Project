@@ -13,14 +13,14 @@
 
 
 
-    <div class="col-lg-8">
+    <div class="main_content col-lg-9">
 
-        <h2>Posts</h2>
+        <h2 style="text-align: center;">Bills</h2>
 
         <div id="vue-div" class="display:none">
             <div class="button_bar">
                 <button v-if="!is_adding_post" class="btn btn-danger btn-sm" v-on:click="add_post_button()" v-bind:class="{'disabled': !logged_in}">
-                {{=icon_add}}Add post
+                {{=icon_add}}Add Bill
                 </button>
                 <button v-if="is_adding_post" class="btn btn-warning btn-sm" v-on:click="add_post_button()">
                 {{=icon_cancel}}Cancel
@@ -43,7 +43,7 @@
                 </form>
             </div>
 
-            <div class="result_table">
+            <div style="position: relative; padding-left:60px; " class="result_table">
 
                 <div class ="posts_style" v-for="post in posts">
 
@@ -101,12 +101,9 @@
 
         </div>
 
-
-
-
     </div>
 
-    <div class="sidebar col-lg-2">
+    <div class="sidebar col-lg-3">
         <div class="profile">
             <div id="circle">
             </div>
