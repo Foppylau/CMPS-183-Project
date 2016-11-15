@@ -28,7 +28,13 @@ def get_posts():
                 post_content = r.post_content,
                 user_email = get_user_name_from_email(r.user_email),
                 created_on = r.created_on,
-                updated_on = r.updated_on
+                updated_on = r.updated_on,
+                creator = r.creator,
+                circle = r.circle,
+                bill = r.bill,
+                payer = r.payer,
+                price = r.price,
+                status = r.status
             )
             posts.append(t)
         else:
@@ -44,6 +50,12 @@ def get_posts():
 def add_post():
     t_id = db.post.insert(
         post_content = request.vars.post_content,
+        creator = request.vars.creator,
+        circle = request.vars.circle,
+        bill = request.vars.bill,
+        payer = request.vars.payer,
+        price = request.vars.price,
+        status = request.vars.status
     )
     t = db.post(t_id)
     return response.json(dict(post=t))
