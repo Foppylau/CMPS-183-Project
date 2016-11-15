@@ -46,7 +46,13 @@ var app = function() {
         // The submit button to add a post has been added.
         $.post(add_post_url,
             {
-                post_content: self.vue.form_content
+                post_content: self.vue.form_content,
+                creator: self.vue.form_creator,
+                payer: self.vue.form_payer,
+                circle: self.vue.form_circle,
+                bill: self.vue.form_bill,
+                price: self.vue.form_price,
+                status: self.vue.form_status
             },
             function (data) {
                 $.web2py.enableElement($("#add_post_submit"));
@@ -106,37 +112,7 @@ var app = function() {
     };
 
 
-    // self.edit_post = function () {
-    //     // The submit button to add a post has been added.
-    //     $.post(edit_post_url,
-    //         {
-    //             post_content: self.vue.form_content
-    //         },
-    //         function (data) {
-    //             $.web2py.enableElement($("#add_post_submit"));
-    //             self.vue.posts.unshift(data.post);
-    //         }
-    //
-    //
-    //         );
-    // };
 
-    // self.edit_post = function(post_id) {
-    //     $.post(edit_post_url,
-    //         {
-    //             post_id: post_id
-    //         },
-    //         function (){
-    //             var idx = null;
-    //             for (var i = 0; i < self.posts.length; i++) {
-    //                 if(self.vue.posts[i].id === post_id) {
-    //                     post_content: self.vue.form_edit;
-    //                     break;
-    //                 }
-    //             }
-    //         }
-    //     )
-    // }
 
     self.vue = new Vue({
         el: "#vue-div",
@@ -149,7 +125,13 @@ var app = function() {
             logged_in: false,
             has_more: false,
             form_content: null,
-            edit_content: null
+            edit_content: null,
+            form_creator: null,
+            form_payer: null,
+            form_circle: null,
+            form_bill: null,
+            form_price: null,
+            form_status: null
         },
         methods: {
             get_more: self.get_more,

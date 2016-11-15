@@ -50,6 +50,11 @@ def get_posts():
 def add_post():
     t_id = db.post.insert(
         post_content = request.vars.post_content,
+        # payer = request.vars.payer,
+        # circle = request.vars.circle,
+        # bill = request.vars.bill,
+        # price = request.vars.price,
+        # status = request.vars.status
     )
     t = db.post(t_id)
     return response.json(dict(post=t))
