@@ -91,12 +91,10 @@
   display: none;
 }
 /* line 38, ../sass/_main.scss */
-.main_content i.fa {
-  padding-right: 5px;
-}
+
 /* line 42, ../sass/_main.scss */
 .main_content #suggest_login {
-  margin-top: 30px;
+
   display-style: inline-block;
 }
 /* line 46, ../sass/_main.scss */
