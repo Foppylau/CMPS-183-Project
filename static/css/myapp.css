@@ -82,10 +82,10 @@
     overflow-x: auto;
 }
 
-/* line 27, ../sass/_main.scss */
-.main_content .splash_container .main_splash h3 .fa {
-  margin-right: 0.5em;
-}
+/*!* line 27, ../sass/_main.scss *!*/
+/*.main_content .splash_container .main_splash h3 .fa {*/
+  /*margin-right: 0.5em;*/
+/*}*/
 /* line 34, ../sass/_main.scss */
 .main_content .vue_hidden {
   display: none;

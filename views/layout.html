@@ -37,42 +37,20 @@
     <!-- Favicons -->
     {{include 'web2py_ajax.html'}} <!-- this includes jquery.js, calendar.js/.css and web2py.js -->
     {{block head}}{{end}}
-    {{
-    # using sidebars need to know what sidebar you want to use
-    mc0 = 'col-md-12'
-    mc1 = 'col-md-9'
-    mc2 = 'col-md-6'
-    left_sidebar_enabled = globals().get('left_sidebar_enabled', False)
-    right_sidebar_enabled = globals().get('right_sidebar_enabled', False)
-    middle_column = {0: mc0, 1: mc1, 2: mc2}[
-    (left_sidebar_enabled and 1 or 0)+(right_sidebar_enabled and 1 or 0)]
-    }}
   </head>
   <body>
 
-    <!--[if lt IE 8]><p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
-    <div class="w2p_flash alert alert-dismissable">{{=response.flash or ''}}</div>
-    <!-- Navbar ======================================= -->
-
-    <!-- Masthead ===================================== -->
-    {{block header}}
-    {{end}}
-    <!-- Main ========================================= -->
+        <!--[if lt IE 8]><p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
+        <div class="w2p_flash alert alert-dismissable">{{=response.flash or ''}}</div>
     <!-- Begin page content -->
-    <div class="container-fluid main-container">
-
-      <div class="{{=middle_column}}">
+    <div>
+      <div >
         {{block center}}
         {{include}}
         {{end}}
       </div>
-
-
-
     </div>
 
-
-    {{end}}
     <!-- The javascript =============================== -->
     <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
     <script src="{{=URL('static','js/web2py-bootstrap3.js')}}"></script>

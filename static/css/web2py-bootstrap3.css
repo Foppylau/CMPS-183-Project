@@ -12,8 +12,7 @@ div.w2p_flash {
     vertical-align: baseline;
     right: auto;
     border-width: 1px;
-    margin: 0 0 20px;
-    padding: 15px 35px 15px 15px;
+
 }
 div.w2p_flash.alert:hover {
     opacity: 1;
@@ -83,7 +82,6 @@ select.autocomplete {
     -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     border-color: #428bca;
-    padding: 6px 12px;
 }
 #web2py-logo {
     color: #c6cecc;
@@ -100,16 +98,14 @@ select.autocomplete {
     color: #FFF;
 }
 .footer > .container-fluid {
-    padding-left: 15px;
-    padding-right: 15px;
-    margin: 20px;
+
 }
 .background {
     background: url(../images/background.jpg) no-repeat center center;
 }
 body {
-    padding-top: 60px;
-    margin-bottom: 60px;
+    margin:0px;
+    height: 100%;
 }
 header {
     -webkit-box-shadow: 0 0 8px 2px #000;
@@ -158,14 +154,6 @@ td.w2p_fw {
 }
 td.w2p_fl {
     text-align: left;
-}
-td.w2p_fl,
-td.w2p_fw {
-    padding-right: 7px;
-}
-td.w2p_fl,
-td.w2p_fc {
-    padding-top: 4px;
 }
 div.w2p_export_menu {
     margin: 5px 0;
