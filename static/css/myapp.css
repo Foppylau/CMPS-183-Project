@@ -65,12 +65,14 @@
 .categories{
     border-top-style:solid;
     display:table-cell;
+    overflow-y:auto;
 }
 
 .categories button{
     height: 15%;
     width: 100%;
     text-align: center;
+    overflow-y:auto;
 }
 
 .newEvent{
@@ -80,7 +82,7 @@
 
 .eventNames{
     height:700px;
-    overflow-x:auto;
+    overflow-y:auto;
 
 }
 /* line 13, ../sass/_main.scss */
@@ -110,7 +112,6 @@
 }
 
 .bills{
-    overflow-x: auto;
 }
 
 /*!* line 27, ../sass/_main.scss *!*/
@@ -230,8 +231,7 @@ div.table_footer span.pagine.disabled i.fa {
 }
 
 .allPosts{
-    overflow-x: scroll;
-    width:auto;
+
 }
 
 .result_table{
