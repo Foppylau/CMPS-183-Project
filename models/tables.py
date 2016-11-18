@@ -22,7 +22,7 @@ db.define_table('post',
                 Field('circle', requires=IS_IN_SET(['Housemates', 'Events', 'Individual loans', 'Subscriptions'])),
                 Field('bill', 'text'),
                 Field('price', 'decimal(7,2)'),
-                Field('status','integer',default = 0)
+                Field('status', requires=IS_IN_SET(['Pay', 'Pending', 'Confirmed']))
                 )
 
 
