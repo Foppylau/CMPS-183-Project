@@ -17,7 +17,19 @@ def index():
     if you need a simple wiki simply replace the two lines below with:
     return auth.wiki()
     """
-    return dict(message=T('Welcome to web2py!'))
+    return dict(message=T('Welcome to PayMe!'))
+
+def housemate():
+    return dict()
+
+def events():
+    return dict()
+
+def individual_loans():
+    return dict()
+
+def subscriptions():
+    return dict()
 
 def user():
     """
