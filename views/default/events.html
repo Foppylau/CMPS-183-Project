@@ -123,9 +123,6 @@
 
     <div class="sidebar col-lg-3">
         <div class="profile">
-            <ul class="nav navbar-nav navbar-right">
-                {{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
-            </ul>
             <div id="circle">
             </div>
             <p style="font-size:20px;">Seth</p>
@@ -145,5 +142,5 @@
     </div>
 
 </body>
-        
+
 <script src="{{=URL('static', 'js/default_index.js')}}"></script>
