@@ -111,11 +111,6 @@ var app = function() {
     };
 
 
-    // self.get_length = function () {
-    //     var num_posts = self.vue.posts.length;
-    //     console.log("np length " + num_posts);
-    //     self.vue.style_result = "width: " + 100* self.vue.posts.length + 'px';
-    // };
     self.vue = new Vue({
         el: "#vue-div",
         delimiters: ['${', '}'],

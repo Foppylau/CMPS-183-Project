@@ -62,8 +62,15 @@
     transition: 0.3s
 }
 
-.events{
+.categories{
     border-top-style:solid;
+    display:table-cell;
+}
+
+.categories button{
+    height: 15%;
+    width: 100%;
+    text-align: center;
 }
 
 .newEvent{
@@ -79,6 +86,10 @@
 /* line 13, ../sass/_main.scss */
 .main_content {
     background-color: #76FFBC;
+
+}
+
+.bills{
     overflow-x: auto;
 }
 
