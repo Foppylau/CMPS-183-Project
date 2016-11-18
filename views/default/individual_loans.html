@@ -19,7 +19,10 @@
                 {{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
     </ul>
 
-    <div class="button_bar">
+
+
+    <div id="vue-div" class="bills">
+        <div class="button_bar">
             <button v-if="!is_adding_post" class="btn btn-danger btn-sm" v-on:click="add_post_button()" v-bind:class="{'disabled': !logged_in}">
             {{=icon_add}}Add Bill
             </button>
@@ -27,8 +30,6 @@
             {{=icon_cancel}}Cancel
             </button>
     </div>
-
-    <div id="vue-div" class="bills">
 
 
         <div v-if="is_adding_post" id="add_post_div">
