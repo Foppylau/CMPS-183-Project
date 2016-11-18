@@ -19,7 +19,7 @@ db.define_table('post',
                 Field('updated_on', 'datetime', update=datetime.datetime.today()),
                 Field('creator', default=auth.user.email if auth.user_id else None),
                 Field('payer', 'text',default=None),
-                Field('circle', 'text'),
+                Field('circle', requires=IS_IN_SET(['Housemates', 'Events', 'Individual loans', 'Subscription'])),
                 Field('bill', 'text'),
                 Field('price', 'decimal(7,2)'),
                 Field('status','integer',default = 0)

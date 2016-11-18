@@ -1,10 +1,16 @@
-{{extend 'login_page.html'}}
+{{extend 'layout.html'}}
 
-    <h3>This Page is going to be the welcome page.</h3>
 
-    <div class="btn btn-default">
-        <a href={{=URL('default', 'bill')}}><h1>Direct to Bill Page</h1></a>
-    </div>
+{{block head}}
+<script src="{{=URL('static', 'js/vue.js')}}"></script>
+<script>
+    var posts_url = "{{=URL('api', 'get_posts')}}";
+    var add_post_url = "{{=URL('api', 'add_post', user_signature=True)}}";
+    var del_post_url = "{{=URL('api', 'del_post', user_signature=True)}}";
+    var edit_post_url = "{{=URL('api', 'edit_post', user_signature=True)}}";
+</script>
+{{end}}
+
 
 <div class="main_content">
 
@@ -94,3 +100,19 @@
 
 
             </div>
+
+            <div v-if="has_more" class="show_more">
+
+                <button class="btn btn-default" v-on:click="get_more()">Load more</button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+<script src="{{=URL('static', 'js/default_index.js')}}"></script>
