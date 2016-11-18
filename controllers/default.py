@@ -31,6 +31,9 @@ def individual_loans():
 def subscriptions():
     return dict()
 
+def newsfeed():
+    return dict()
+
 def user():
     """
     exposes:

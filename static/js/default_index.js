@@ -44,19 +44,21 @@ var app = function() {
 
     self.add_post = function () {
         // The submit button to add a post has been added.
-        $.post(add_post_url,
-            {
-                post_content: self.vue.form_content,
-                payer: self.vue.form_payer,
-                circle: self.vue.form_circle,
-                bill: self.vue.form_bill,
-                price: self.vue.form_price,
-                status: self.vue.form_status
-            },
-            function (data) {
-                $.web2py.enableElement($("#add_post_submit"));
-                self.vue.posts.unshift(data.post);
-            });
+
+            $.post(add_post_url,
+                {
+                    post_content: self.vue.form_content,
+                    payer: self.vue.form_payer,
+                    circle: self.vue.form_circle,
+                    bill: self.vue.form_bill,
+                    price: self.vue.form_price,
+                    status: self.vue.form_status
+                },
+                function (data) {
+                    $.web2py.enableElement($("#add_post_submit"));
+                    self.vue.posts.unshift(data.post);
+                });
+
     };
 
     self.delete_post = function(post_id) {

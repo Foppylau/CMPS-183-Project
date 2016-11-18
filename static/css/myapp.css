@@ -84,9 +84,29 @@
 
 }
 /* line 13, ../sass/_main.scss */
-.main_content {
-    background-color: #76FFBC;
+.housemates {
+    background-color: #ecf0f1;
+    color: #000000;
+}
 
+.newsfeed {
+    background-color: #3498db;
+    color: #000000;
+}
+
+.events {
+    background-color: #e74c3c;
+    color: #000000;
+}
+
+.subscriptions {
+    background-color: #f1c40f;
+    color: #000000;
+}
+
+.loans{
+    background-color: #9b59b6;
+    color: #000000;
 }
 
 .bills{
@@ -215,9 +235,10 @@ div.table_footer span.pagine.disabled i.fa {
 }
 
 .result_table{
-    margin-top: 0 auto;
-    width: 2000px;
+    margin-top: 0px;
+    width: auto;
     display: inline-block;
+
 }
 
 .result_table div{

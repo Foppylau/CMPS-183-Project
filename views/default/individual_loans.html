@@ -11,8 +11,8 @@
 {{end}}
 
 
-
-<div class="main_content col-lg-10">
+<body class="loans">
+<div class="col-lg-10">
 
     <h2 style="text-align: center; position: static;">Individual Loans</h2>
     <ul class="nav navbar-nav navbar-right">
@@ -64,8 +64,8 @@
 
         <div class="result_table" v-bind:style="style_result">
 
-            <div class ="posts_style" v-for="post in posts">
-
+            <div v-for="post in posts">
+            <div class ="posts_style"  v-if="post.circle == 'Individual loans'">
             <div class="button_bar">
                 <button v-if="!is_editing_post" class="btn btn-danger btn-sm" v-on:click="edit_post_button" v-bind:class="{'disabled': !logged_in}">
                     {{=icon_edit}}Edit post
@@ -111,13 +111,10 @@
                 </p>
 
             </div>
-
-            <div v-if="has_more" class="show_more">
-
-                <button class="btn btn-default" v-on:click="get_more()">Load more</button>
             </div>
 
-            <img src="logo.png">
+
+
 
         </div>
 
@@ -138,15 +135,16 @@
         </div>
         <div class="categories">
             <div class="eventNames">
-                <a href={{=URL('default', 'housemate')}}><button>Housemates</button></a>
-                <a href={{=URL('default', 'events')}}><button>Events</button></a>
-                <a href={{=URL('default', 'individual_loans')}}><button>Individual Loans</button></a>
-                <a href={{=URL('default', 'subscriptions')}}><button>Subscriptions</button></a>
+                <a href={{=URL('default', 'housemate')}}><button class="housemates">Housemates</button></a>
+                <a href={{=URL('default', 'events')}}><button class="events">Events</button></a>
+                <a href={{=URL('default', 'individual_loans')}}><button class="loans">Individual Loans</button></a>
+                <a href={{=URL('default', 'subscriptions')}}><button class="subscriptions">Subscriptions</button></a>
+                <a href={{=URL('default', 'newsfeed')}}><button class="newsfeed">News Feed</button></a>
             </div>
         </div>
     </div>
 
-
+</body>
 
 
 
