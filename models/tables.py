@@ -17,12 +17,12 @@ db.define_table('post',
                 Field('post_content', 'text'),
                 Field('created_on', 'datetime', default=datetime.datetime.today()),
                 Field('updated_on', 'datetime', update=datetime.datetime.today()),
-                Field('creator', 'text'),
-                Field('circle', 'text'),
+                Field('creator', default=auth.user.email if auth.user_id else None),
+                Field('payer', 'text',default=None),
+                Field('circle', requires=IS_IN_SET(['Housemates', 'Events', 'Individual loans', 'Subscriptions'])),
                 Field('bill', 'text'),
-                Field('payer', 'text'),
-                Field('price', 'decimal(7, 2)'),
-                Field('status', 'text')
+                Field('price', 'decimal(7,2)'),
+                Field('status', requires=IS_IN_SET(['Pay', 'Pending', 'Confirmed']))
                 )
 
 

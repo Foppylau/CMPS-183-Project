@@ -46,7 +46,12 @@ var app = function() {
         // The submit button to add a post has been added.
         $.post(add_post_url,
             {
-                post_content: self.vue.form_content
+                post_content: self.vue.form_content,
+                payer: self.vue.form_payer,
+                circle: self.vue.form_circle,
+                bill: self.vue.form_bill,
+                price: self.vue.form_price,
+                status: self.vue.form_status
             },
             function (data) {
                 $.web2py.enableElement($("#add_post_submit"));
@@ -122,7 +127,12 @@ var app = function() {
             logged_in: false,
             has_more: false,
             form_content: null,
-            edit_content: null
+            edit_content: null,
+            form_payer: null,
+            form_circle: null,
+            form_bill: null,
+            form_price: null,
+            form_status: null
         },
         methods: {
             get_more: self.get_more,
@@ -130,7 +140,7 @@ var app = function() {
             edit_post_button: self.edit_post_button,
             add_post: self.add_post,
             edit_post: self.edit_post,
-            delete_post: self.delete_post,
+            delete_post: self.delete_post
 
         },
 
