@@ -32,7 +32,12 @@
                     <div>
                         <input class="form-control string" id="no_table_content" v-model="form_content" placeholder="Content" type="text" />
                         <input class="form-control string" id="no_table_artist" v-model="form_payer" placeholder="Payer" type="text" />
-                        <input class="form-control string" id="no_table_artist" v-model="form_circle" placeholder="Group" type="text" />
+                        <select class="form-control string" id="no_table_artist" v-model="form_circle" placeholder="Group" type="text">
+                            <option value="Housemates">Housemates</option>
+                            <option value="Events">Events</option>
+                            <option value="Individual loans">Individual loans</option>
+                            <option value="Subscriptions">Subscriptions</option>
+                        </select>
                         <input class="form-control string" id="no_table_artist" v-model="form_bill" placeholder="Bill Name" type="text" />
                         <input class="form-control string" id="no_table_artist" v-model="form_price" placeholder="Price: $" type="decimal" />
                         <input class="form-control string" id="no_table_artist" v-model="form_status" placeholder="Status" type="integer" />
