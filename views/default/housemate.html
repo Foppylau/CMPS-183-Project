@@ -12,7 +12,7 @@
 
 
 <body class="housemates">
-<div class="col-lg-9">
+<div class="col-lg-10">
 
     <h2 style="text-align: center; position: static;">Housemates</h2>
     <ul class="nav navbar-nav navbar-right">
@@ -37,7 +37,7 @@
                     <input class="form-control string" id="no_table_content" v-model="form_content" placeholder="Content" type="text" />
                     <input class="form-control string" id="no_table_artist" v-model="form_payer" placeholder="Payer" type="text" />
                     <select class="form-control string" id="no_table_artist" v-model="form_circle" placeholder="Group" type="text">
-                        <option value="Group" disabled selected hidden>Please Choose...</option>
+                        <option value="" disabled selected hidden>Select your option</option>
                         <option value="Housemates">Housemates</option>
                         <option value="Events">Events</option>
                         <option value="Individual loans">Individual loans</option>
@@ -107,7 +107,7 @@
             </div>
             </div>
 
-           <!-- <div v-if="has_more" class="show_more"><button class="btn btn-default" v-on:click="get_more()">Load more</button></div>-->
+            <!--<div v-if="has_more" class="show_more"><button class="btn btn-default" v-on:click="get_more()">Load more</button></div>-->
 
 
 
@@ -120,7 +120,7 @@
         <div class="profile" v-for="post in posts">
             <div id="circle">
             </div>
-            <p style="font-size:20px;">{{=get_user_email(auth.user.email)}}</p>
+            <p style="font-size:20px;">Name</p>
             <p style="text-decoration-color: red;">Owes: </p>
             <p style="text-decoration-color: blue;">Pending: </p>
 
