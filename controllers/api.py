@@ -44,6 +44,7 @@ def get_posts():
         posts=posts,
         logged_in=logged_in,
         has_more=has_more,
+        get_user=get_user_name_from_email
     ))
 
 @auth.requires_signature()
