@@ -47,8 +47,8 @@ def settings():
 
 
 def housemate():
-    row = db(db.pictures.user_email == "default@ucsc.edu").select().first()
-    picture = row.file_name
+    #row = db(db.pictures.user_email == "default@ucsc.edu").select().first()
+    picture = None
     if auth.user is not None:
         row = db(db.pictures.user_email == auth.user.email).select().first()
         if row is not None:
