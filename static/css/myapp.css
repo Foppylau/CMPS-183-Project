@@ -262,11 +262,91 @@ div.table_footer span.pagine.disabled i.fa {
     display: inline-block;
 }
 
+/* USER LOG-IN PAGE */
+.userPage{
+    border: 2px solid #FFFFFF;
+	color: #FFFFFF;
+    padding: 50px;
+}
+
 .button{
   background-color: #fbfbfb;
   color: #808080;
 }
 
-.site_scheme{
-  background: #808080;
+#payback{
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    padding: 0px 0px 0px 3px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 90px;
+    background-image:url("payback.png");
+    background-size:cover;
+}
+
+/* WELCOME PAGE */
+.row{
+    margin: 0px;
+}
+
+.container{
+    background:url("background.JPG") no-repeat center center fixed;
+    height:100%;
+    width:100%;
+    margin: 0px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.welcomePage{
+    text-align: center;
+    padding: 0px;
+    height:100%;
+    width:100%;
+}
+
+#logo{
+    margin: 0 auto;
+    width: 125px;
+    height: 125px;
+    padding: 0px 0px 0px 3px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 90px;
+    background-image:url("logoT.png");
+    background-size:cover;
+}
+
+.welcomeText{
+    color: #FFFFFF;
+}
+
+.welcomeText p{
+    text-align: center;
+}
+
+.btn-outline-secondary {
+	border: 2px solid #FFFFFF;
+	color: #FFFFFF;
+}
+
+.btn-outline-secondary a{
+	color: #FFFFFF;
+}
+
+.btn-outline-secondary:hover, .btn-outline-secondary:focus, .btn-outline-secondary:active, .btn-outline-secondary.active {
+	color: #FFFFFF;
+	border-color: #FFFFFF;
+}
+
+html, body {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
 }
