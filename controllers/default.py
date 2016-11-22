@@ -8,6 +8,14 @@
 # - download is for downloading files uploaded in the db (does streaming)
 # -------------------------------------------------------------------------
 
+def get_user_name_from_email(email):
+    """Returns a string corresponding to the user first and last names,
+    given the user email."""
+    u = db(db.auth_user.email == email).select().first()
+    if u is None:
+        return 'None'
+    else:
+        return ' '.join([u.first_name, u.last_name])
 
 def index():
     """
@@ -23,7 +31,12 @@ def housemate():
     return dict()
 
 def settings():
-    grid = SQLFORM.smartgrid(db.pictures)
+    grid = SQLFORM(db.pictures, ignore_rw=True, deletable=True)
+    if grid.process().accepted:
+        response.flash = 'form accepted'
+    elif grid.errors:
+        response.flash = 'form has errors'
+
     row = db(db.pictures.user_email == auth.user.email).select().first()
     if row is not None:
         picture = row.file_name
@@ -40,12 +53,13 @@ def individual_loans():
     return dict()
 
 def subscriptions():
-    row = db(db.pictures.user_email == auth.user.email).select().first()
-    if row is not None:
-        picture = row.file_name
-    else:
-        picture = "slug.png"
-    return dict(profile_pic=picture)
+    row = db(db.pictures.user_email == "default@ucsc.edu").select().first()
+    picture = row.file_name
+    if auth.user is not None:
+        row = db(db.pictures.user_email == auth.user.email).select().first()
+        if row is not None:
+            picture = row.file_name
+    return dict(profile_pic=picture, get_username = get_user_name_from_email)
 
 def newsfeed():
     return dict()

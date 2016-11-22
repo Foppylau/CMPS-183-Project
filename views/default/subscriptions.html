@@ -95,15 +95,11 @@
         </div>
 
                 
-
-                <p>User: ${post.user_email}</p>
+                <h1>Bill Name: ${post.bill}</h1>
                 <p>Created On: ${post.created_on}</p>
                 <p>Updated: ${post.updated_on}</p>
-                <p>Creator: ${post.creator}</p>
-                <p>Payer: ${post.payer}</p>
+                <p>Creator: ${post.user_email}</p>
                 <p>Group: ${post.circle}</p>
-                <p>Bill Name: ${post.bill}</p>
-                <p>Price: ${post.price}</p>
                 <p>Status: ${post.status}</p>
 
                 <p style="text-align: center; width:6%; display: inline-block; " v-on:click="delete_post(post.id)">
@@ -120,13 +116,18 @@
     </div>
     </div>
 
-    <div class="sidebar col-lg-3">
+    {{if auth.user_id is not None:}}
+        <div class="sidebar col-lg-3">
         <div class="profile">
 
-            <div id="circle">
-                    <img src="{{=URL('default', 'download', args=profile_pic)}}">
+            <div class="btn btn-group-justified">
+                <a href={{=URL('default', 'settings')}}>Settings</a>
             </div>
-            <p style="font-size:20px;">Seth</p>
+
+            <div id="circle">
+                    <img src="{{=URL('default', 'download', args=profile_pic)}}" width=100 height=100 >
+            </div>
+            <p style="font-size:20px;">{{get_user_email()}}</p>
             <p style="text-decoration-color: red;">Owes: </p>
             <p style="text-decoration-color: blue;">Pending: </p>
 
@@ -141,6 +142,10 @@
             </div>
         </div>
     </div>
+    {{pass}}
+
+
+
 
 
 </body>
