@@ -44,14 +44,21 @@ var app = function() {
 
     self.add_post = function () {
         // The submit button to add a post has been added.
-        $.post(add_post_url,
-            {
-                post_content: self.vue.form_content
-            },
-            function (data) {
-                $.web2py.enableElement($("#add_post_submit"));
-                self.vue.posts.unshift(data.post);
-            });
+
+            $.post(add_post_url,
+                {
+                    post_content: self.vue.form_content,
+                    payer: self.vue.form_payer,
+                    circle: self.vue.form_circle,
+                    bill: self.vue.form_bill,
+                    price: self.vue.form_price,
+                    status: self.vue.form_status
+                },
+                function (data) {
+                    $.web2py.enableElement($("#add_post_submit"));
+                    self.vue.posts.unshift(data.post);
+                });
+
     };
 
     self.delete_post = function(post_id) {
@@ -81,6 +88,10 @@ var app = function() {
         self.vue.is_editing_post = !self.vue.is_editing_post;
     };
 
+    self.add_picture_button = function () {
+        self.vue.is_adding_picture = !self.vue.is_adding_picture;
+    }
+
     self.edit_post = function(p_id) {
         $.post(edit_post_url,
             {
@@ -106,33 +117,34 @@ var app = function() {
     };
 
 
-    // self.get_length = function () {
-    //     var num_posts = self.vue.posts.length;
-    //     console.log("np length " + num_posts);
-    //     self.vue.style_result = "width: " + 100* self.vue.posts.length + 'px';
-    // };
     self.vue = new Vue({
         el: "#vue-div",
         delimiters: ['${', '}'],
         unsafeDelimiters: ['!{', '}'],
         data: {
             is_adding_post: false,
+            is_adding_picture: false,
             is_editing_post: false,
             posts: [],
             logged_in: false,
             has_more: false,
             form_content: null,
             edit_content: null,
-            style_result: null
+            form_payer: null,
+            form_circle: null,
+            form_bill: null,
+            form_price: null,
+            form_status: null
         },
         methods: {
             get_more: self.get_more,
             add_post_button: self.add_post_button,
+            add_picture_button: self.add_picture_button,
             edit_post_button: self.edit_post_button,
             add_post: self.add_post,
             edit_post: self.edit_post,
-            delete_post: self.delete_post,
-            // get_length: self.get_length,
+            delete_post: self.delete_post
+
         },
 
         filters: {
@@ -143,7 +155,6 @@ var app = function() {
     });
 
     self.get_posts();
-    self.get_length();
     $("#vue-div").show();
 
 

@@ -20,6 +20,9 @@
     display:flex;
 }
 
+.edit_button{
+    padding:0px;
+}
 .content{
     border-radius: 10px;
 }
