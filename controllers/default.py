@@ -22,14 +22,7 @@ def index():
 def housemate():
     return dict()
 
-def events():
-    return dict()
-
-def individual_loans():
-    return dict()
-
-def subscriptions():
-
+def settings():
     grid = SQLFORM.smartgrid(db.pictures)
     row = db(db.pictures.user_email == auth.user.email).select().first()
     if row is not None:
@@ -39,6 +32,20 @@ def subscriptions():
 
 
     return dict(grid = grid, profile_pic = picture)
+
+def events():
+    return dict()
+
+def individual_loans():
+    return dict()
+
+def subscriptions():
+    row = db(db.pictures.user_email == auth.user.email).select().first()
+    if row is not None:
+        picture = row.file_name
+    else:
+        picture = "slug.png"
+    return dict(profile_pic=picture)
 
 def newsfeed():
     return dict()
