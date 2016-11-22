@@ -44,21 +44,14 @@ var app = function() {
 
     self.add_post = function () {
         // The submit button to add a post has been added.
-
-            $.post(add_post_url,
-                {
-                    post_content: self.vue.form_content,
-                    payer: self.vue.form_payer,
-                    circle: self.vue.form_circle,
-                    bill: self.vue.form_bill,
-                    price: self.vue.form_price,
-                    status: self.vue.form_status
-                },
-                function (data) {
-                    $.web2py.enableElement($("#add_post_submit"));
-                    self.vue.posts.unshift(data.post);
-                });
-
+        $.post(add_post_url,
+            {
+                post_content: self.vue.form_content
+            },
+            function (data) {
+                $.web2py.enableElement($("#add_post_submit"));
+                self.vue.posts.unshift(data.post);
+            });
     };
 
     self.delete_post = function(post_id) {
@@ -113,6 +106,11 @@ var app = function() {
     };
 
 
+    // self.get_length = function () {
+    //     var num_posts = self.vue.posts.length;
+    //     console.log("np length " + num_posts);
+    //     self.vue.style_result = "width: " + 100* self.vue.posts.length + 'px';
+    // };
     self.vue = new Vue({
         el: "#vue-div",
         delimiters: ['${', '}'],
@@ -125,11 +123,7 @@ var app = function() {
             has_more: false,
             form_content: null,
             edit_content: null,
-            form_payer: null,
-            form_circle: null,
-            form_bill: null,
-            form_price: null,
-            form_status: null
+            style_result: null
         },
         methods: {
             get_more: self.get_more,
@@ -137,8 +131,8 @@ var app = function() {
             edit_post_button: self.edit_post_button,
             add_post: self.add_post,
             edit_post: self.edit_post,
-            delete_post: self.delete_post
-
+            delete_post: self.delete_post,
+            // get_length: self.get_length,
         },
 
         filters: {
@@ -149,6 +143,7 @@ var app = function() {
     });
 
     self.get_posts();
+    self.get_length();
     $("#vue-div").show();
 
 

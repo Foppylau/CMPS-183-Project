@@ -20,6 +20,15 @@
     display:flex;
 }
 
+.content{
+    border-radius: 10px;
+}
+
+.s{
+    color:white;
+    font-size:0px;
+    display:none;
+}
 .sidebar{
     height: 100%;
     width: 290px;
@@ -64,26 +73,18 @@
 
 .categories{
     border-top-style:solid;
-    display:table-cell;
-    overflow-y:auto;
+    overflow-y:scroll;
+    height:700px;
 }
 
 .categories button{
     height: 15%;
     width: 100%;
     text-align: center;
-    overflow-y:auto;
 }
 
-.newEvent{
-    margin: 0 auto;
-    width: 100px;
-}
-
-.eventNames{
-    height:700px;
-    overflow-y:auto;
-
+.categories a{
+    overflow-y:scroll;
 }
 /* line 13, ../sass/_main.scss */
 .housemates {

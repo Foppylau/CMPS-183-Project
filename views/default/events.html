@@ -12,11 +12,11 @@
 
 
 <body class="events">
-<div class="col-lg-9">
+<div class="col-lg-9" style="width:78%;">
 
-    <h2 style="text-align: center; position: static;">Events</h2>
-    <ul class="nav navbar-nav navbar-right">
-                {{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
+    <h2 style="display: inline-block; text-align: center;">Events</h2>
+    <ul class="nav navbar-nav navbar-right" style="display: inline-block;">
+        {{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
     </ul>
 
 
@@ -33,50 +33,44 @@
 
 
         <div v-if="is_adding_post" id="add_post_div">
-            <form action="#" v-on:submit.prevent="add_post()" class="form-horizontal" enctype="multipart/form-data" method="post">
-                <div class="form-group" id="no_table_artist__row">
-                    <div>
-                        <input class="form-control string" id="no_table_content" v-model="form_content" placeholder="Content" type="text" />
-                        <input class="form-control string" id="no_table_artist" v-model="form_payer" placeholder="Payer" type="text" />
-                        <select class="form-control string" id="no_table_artist" v-model="form_circle" placeholder="Group" type="text">
-                            <option value="" disabled selected hidden>Select your option</option>
-                            <option value="Housemates">Housemates</option>
-                            <option value="Events">Events</option>
-                            <option value="Individual loans">Individual loans</option>
-                            <option value="Subscriptions">Subscriptions</option>
+        <form action="#" v-on:submit.prevent="add_post()" enctype="multipart/form-data" method="post">
+            <div class="form-group" id="no_table_artist__row">
+                <div>
+                    <input class="content" id="no_table_content" v-model="form_content" placeholder="Content" type="text" />
+                    <input class="content" id="no_table_artist" v-model="form_payer" placeholder="Payer" type="text" />
+                    <select class="content" id="no_table_artist" v-model="form_circle" placeholder="Group" type="text">
+                        <option value="selected"  class="s">Select your option</option>
+                        <option value="Housemates">Housemates</option>
+                        <option value="Events">Events</option>
+                        <option value="Individual loans">Individual loans</option>
+                        <option value="Subscriptions">Subscriptions</option>
+                    </select>
+                    <input class="content" id="no_table_artist" v-model="form_bill" placeholder="Bill Name" type="text" />
+                    <input class="content" id="no_table_artist" v-model="form_price" placeholder="Price: $" type="decimal" />
+                    <select class="content" id="no_table_artist" v-model="form_status" placeholder="Group" type="text">
+                        <option value="Pay">Pay</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Confirmed">Confirmed</option>
                         </select>
-                        <input class="form-control string" id="no_table_artist" v-model="form_bill" placeholder="Bill Name" type="text" />
-                        <input class="form-control string" id="no_table_artist" v-model="form_price" placeholder="Price: $" type="decimal" />
-                        <select class="form-control string" id="no_table_artist" v-model="form_status" placeholder="Group" type="text">
-                            <option value="Pay">Pay</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Confirmed">Confirmed</option>
 
-                    </div>
                 </div>
-                <div v-if="is_adding_post" v-on:click="add_post_button()" class="form-group" id="submit_record__row">
-                    <div>
-                        <input class="btn btn-primary" id="add_post_submit" type="submit" value="Submit" />
-                    </div>
+            </div>
+
+            <div v-if="is_adding_post" v-on:click="add_post_button()" class="form-group" id="submit_record__row">
+                <div>
+                    <input class="btn btn-primary" id="add_post_submit" type="submit" value="Submit" />
                 </div>
-            </form>
-        </div>
+            </div>
+
+        </form>
+    </div>
 
         <div class="result_table" v-bind:style="style_result">
 
             <div v-for="post in posts">
             <div class ="posts_style"  v-if="post.circle == 'Events'">
-            <div class="button_bar">
-                <button v-if="!is_editing_post" class="btn btn-danger btn-sm" v-on:click="edit_post_button" v-bind:class="{'disabled': !logged_in}">
-                    {{=icon_edit}}Edit post
-                </button>
-
                 <div v-if="!is_editing_post"><h2>${post.post_content}</h2></div>
 
-                <button v-if="is_editing_post" class="btn btn-warning btn-sm" v-on:click="edit_post_button()">
-                    {{=icon_cancel}}Cancel
-                </button>
-            </div>
 
         <div v-if="is_editing_post" id="edit_post_div">
             <form action="#" v-on:submit.prevent="edit_post(post.id)" class="form-horizontal" enctype="multipart/form-data" method="post">
@@ -104,7 +98,15 @@
                 <p>Price: ${post.price}</p>
                 <p>Status: ${post.status}</p>
 
-                <p style="text-align: center; width:6%; display: inline-block; " v-on:click="delete_post(post.id)">
+                <div class="button_bar">
+                    <button v-if="post.mypost" class="btn btn-danger btn-sm" v-on:click="edit_post_button" v-bind:class="{'disabled': !logged_in}">
+                        {{=icon_edit}}Edit post
+                    </button>
+                    <button v-if="is_editing_post" class="btn btn-warning btn-sm" v-on:click="edit_post_button()">
+                        {{=icon_cancel}}Cancel
+                    </button>
+                </div>
+                <p v-if="post.mypost" style="text-align: center; width:6%; display: inline-block; " v-on:click="delete_post(post.id)">
                     {{=icon_delete}}
                 </p>
 
@@ -113,6 +115,7 @@
         </div>
 
 
+        <div v-if="has_more" class="show_more"><button class="btn btn-default" v-on:click="get_more()">Load more</button></div>
 
 
 
@@ -125,13 +128,13 @@
         <div class="profile">
             <div id="circle">
             </div>
-            <p style="font-size:20px;">Seth</p>
+            <p style="font-size:15px;">{{=get_user_name_from_email(auth.user.email)}}</p>
             <p style="text-decoration-color: red;">Owes: </p>
             <p style="text-decoration-color: blue;">Pending: </p>
 
         </div>
-        <div class="categories">
-            <div class="eventNames">
+        <div class="categories" style="overflow-y:auto;>
+            <div class="eventNames"">
                 <a href={{=URL('default', 'housemate')}}><button class="housemates">Housemates</button></a>
                 <a href={{=URL('default', 'events')}}><button class="events">Events</button></a>
                 <a href={{=URL('default', 'individual_loans')}}><button class="loans">Individual Loans</button></a>

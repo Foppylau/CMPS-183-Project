@@ -21,8 +21,17 @@ def get_posts():
     posts = []
     has_more = False
     rows = db().select(db.post.ALL, limitby=(start_idx, end_idx + 1), orderby=~db.post.created_on)
+
+
+
     for i, r in enumerate(rows):
         if i < end_idx - start_idx:
+
+            if auth.user_id is not None and r.user_email == auth.user.email:
+                mypost = True
+            else:
+                mypost = False
+
             t = dict(
                 id = r.id,
                 post_content = r.post_content,
@@ -34,17 +43,20 @@ def get_posts():
                 bill = r.bill,
                 payer = r.payer,
                 price = r.price,
-                status = r.status
+                status = r.status,
+                mypost = mypost
             )
             posts.append(t)
         else:
             has_more = True
     logged_in = auth.user_id is not None
+    print(auth.user.email)
+
     return response.json(dict(
         posts=posts,
         logged_in=logged_in,
         has_more=has_more,
-        get_user=get_user_name_from_email
+
     ))
 
 @auth.requires_signature()
@@ -74,6 +86,20 @@ def edit_post():
     row.update_record(post_content=request.vars.edit_content)
 
 
+# def update_post():
+#     """Here we get edits to a post and update the database"""
+#
+#     #This check prevents empty updates from being submitted
+#     if request.vars.edit_content != "":
+#         p = db.post(request.vars.post_id)
+#         p.post_content = request.vars.edit_content
+#         p.updated_on = datetime.datetime.utcnow()
+#         p.update_record()
+#         response.flash = T("Post Updated")
+#         return response.json(dict(post=p, idx = False))
+#     else:
+#         response.flash = T("Post Cannot Be Empty")
+#         return response.json(dict(idx=True))
 
 # @auth.requires_signature()
 # def edit_post():
