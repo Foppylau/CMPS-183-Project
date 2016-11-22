@@ -25,7 +25,10 @@ def index():
     if you need a simple wiki simply replace the two lines below with:
     return auth.wiki()
     """
-    return dict(message=T('Welcome to PayMe!'))
+    logged_in = auth.user_id is not None
+    if(logged_in):
+        redirect(URL('default', 'newsfeed'))
+    return dict(logged_in=logged_in, message=T('Welcome to PayMe!'))
 
 def housemate():
     logged_in = auth.user_id is not None
