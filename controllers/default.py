@@ -43,7 +43,6 @@ def settings():
     else:
         picture = "slug.png"
 
-
     return dict(grid = grid, profile_pic = picture)
 
 
