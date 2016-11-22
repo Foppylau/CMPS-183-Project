@@ -56,16 +56,17 @@
 }
 
 #circle {
-    margin: 0 auto;
-    width: 125px;
-    height: 125px;
-    padding: 0px 0px 0px 3px;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    border-radius: 90px;
-    background-image:url("slug.png");
-    background-size:cover;
-    border-style:solid;
+    /*margin: 0 auto;*/
+    /*width: 125px;*/
+    /*height: 125px;*/
+    /*padding: 0px 0px 0px 3px;*/
+    /*-webkit-border-radius: 25px;*/
+    /*-moz-border-radius: 25px;*/
+    /*border-radius: 90px;*/
+    /*background-image:url("slug.png");*/
+    /*background-size:cover;*/
+    /*border-style:solid;*/
+    padding-left: 80px;
 }
 
 .profile p{

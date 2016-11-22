@@ -120,10 +120,16 @@
     </div>
     </div>
 
+
     <div class="sidebar col-lg-3" >
-        <div class="profile" v-for="post in posts">
+        <div class="profile">
+
+            <a href={{=URL('default', 'settings')}}><button class="settings">Settings </button></a>
+
             <div id="circle">
+                <img src="{{=URL('default', 'download', args=profile_pic)}}" width=100 height=100 >
             </div>
+
             <p v-if="logged_in"style="font-size:15px;">{{=get_user_name_from_email(auth.user.email)}}</p>
             <p style="text-decoration-color: red;">Owes: </p>
             <p style="text-decoration-color: blue;">Pending: </p>

@@ -25,6 +25,15 @@ db.define_table('post',
                 Field('status', requires=IS_IN_SET(['Pay', 'Pending', 'Confirmed']))
                 )
 
+db.define_table('pictures',
+                Field('user_email', default=auth.user.email if auth.user_id else None),
+                Field('file_name', 'upload'),
+                Field('title', unique=True)
+                )
+
+db.pictures.title.requires = IS_NOT_IN_DB(db, db.pictures.title)
+db.pictures.user_email.requires = IS_NOT_IN_DB(db, db.pictures.user_email)
+
 
 
 # after defining tables, uncomment below to enable auditing
