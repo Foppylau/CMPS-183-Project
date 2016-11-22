@@ -34,8 +34,8 @@
         <form action="#" v-on:submit.prevent="add_post()" enctype="multipart/form-data" method="post">
             <div class="form-group" id="no_table_artist__row">
                 <div>
-                    <input class="content" id="no_table_content" v-model="form_content" placeholder="Content" type="text" />
-                    <input class="content" id="no_table_artist" v-model="form_payer" placeholder="Payer" type="text" />
+                    <input class="content" id="no_table_artist" v-model="form_bill" placeholder="Bill Name" type="text" />
+                    <input class="content" id="no_table_artist" v-model="form_payer" placeholder="Payee" type="text" />
                     <select class="content" id="no_table_artist" v-model="form_circle" placeholder="Group" type="text">
                         <option value="selected"  class="s">Select your option</option>
                         <option value="Housemates">Housemates</option>
@@ -43,7 +43,6 @@
                         <option value="Individual loans">Individual loans</option>
                         <option value="Subscriptions">Subscriptions</option>
                     </select>
-                    <input class="content" id="no_table_artist" v-model="form_bill" placeholder="Bill Name" type="text" />
                     <input class="content" id="no_table_artist" v-model="form_price" placeholder="Price: $" type="decimal" />
                     <select class="content" id="no_table_artist" v-model="form_status" placeholder="Group" type="text">
                         <option value="Pay">Pay</option>
@@ -66,23 +65,20 @@
         <div class="result_table" v-bind:style="style_result">
             <div  v-for="post in posts">
                 <div class ="posts_style"  v-if="post.circle == 'Housemates'">
-                <div v-if="!is_editing_post"><h2>${post.post_content}</h2></div>
+               <!-- <div v-if="!is_editing_post"><h2>${post.post_content}</h2></div>-->
 
 
         <div v-if="is_editing_post" id="edit_post_div">
             <form action="#" v-on:submit.prevent="edit_post(post.id)" class="form-horizontal" enctype="multipart/form-data" method="post">
                 <div class="form-group" id="no_table_artist__row">
                     <div>
-                        <textarea class="form-control string" id="no_table_content" v-model="post.user_email" value="pre-fill" type="text"> </textarea>
+                        <textarea class="form-control string" id="no_table_content" v-model="post.bill" value="pre-fill" type="text"> </textarea>
                         <textarea class="form-control string" id="no_table_content" v-model="post.created_on" value="pre-fill" type="text"> </textarea>
-                        <textarea class="form-control string" id="no_table_content" v-model="post.updated_on" value="pre-fill" type="text"> </textarea>
                         <textarea class="form-control string" id="no_table_content" v-model="post.creator" value="pre-fill" type="text"> </textarea>
                         <textarea class="form-control string" id="no_table_content" v-model="post.payer" value="pre-fill" type="text"> </textarea>
-                        <textarea class="form-control string" id="no_table_content" v-model="post.circle" value="pre-fill" type="text"> </textarea>
                         <textarea class="form-control string" id="no_table_content" v-model="post.bill" value="pre-fill" type="text"> </textarea>
                         <textarea class="form-control string" id="no_table_content" v-model="post.price" value="pre-fill" type="text"> </textarea>
                         <textarea class="form-control string" id="no_table_content" v-model="post.status" value="pre-fill" type="text"> </textarea>
-                        <span class="help-block">Edit your post here, refresh to see edit</span>
                     </div>
                 </div>
                 <div v-if="is_editing_post" v-on:click="edit_post_button()" class="form-group" id="submit_record__row">
@@ -95,23 +91,18 @@
                 </button>
             </form>
         </div>
-                    <div>
-
-                <p>User: ${post.user_email}</p>
+        <div v-if="!is_editing_post">
+                <p>Bill Name: ${post.bill}</p>
                 <p>Created On: ${post.created_on}</p>
-                <p>Updated: ${post.updated_on}</p>
                 <p>Creator: ${post.creator}</p>
                 <p>Payer: ${post.payer}</p>
-                <p>Group: ${post.circle}</p>
-                <p>Bill Name: ${post.bill}</p>
                 <p>Price: ${post.price}</p>
                 <p>Status: ${post.status}</p>
-
 
                 <button style="text-align: right; display:inline-block;" v-if="post.mypost" class="btn btn-warning btn-sm" v-on:click="edit_post_button()" v-bind:class="{'disabled': !logged_in}">
                      {{=icon_edit}}
                 </button>
-                        </div>
+        </div>
                 <p v-if="post.mypost" style="text-align: center; width:6%; display: inline-block; " v-on:click="delete_post(post.id)">
                     {{=icon_delete}}
                 </p>

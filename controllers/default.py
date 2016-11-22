@@ -28,21 +28,36 @@ def index():
     return dict(message=T('Welcome to PayMe!'))
 
 def housemate():
+    logged_in = auth.user_id is not None
+    if(not logged_in):
+        redirect(URL('default', 'user'))
 
-    return dict(get_user_name_from_email=get_user_name_from_email)
+    return dict(logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
 
 def events():
-    return dict(get_user_name_from_email=get_user_name_from_email)
+    logged_in = auth.user_id is not None
+    if (not logged_in):
+        redirect(URL('default', 'user'))
 
+    return dict(logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
 def individual_loans():
-    return dict(get_user_name_from_email=get_user_name_from_email)
+    logged_in = auth.user_id is not None
+    if (not logged_in):
+        redirect(URL('default', 'user'))
 
+    return dict(logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
 def subscriptions():
-    return dict(get_user_name_from_email=get_user_name_from_email)
+    logged_in = auth.user_id is not None
+    if (not logged_in):
+        redirect(URL('default', 'user'))
 
+    return dict(logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
 def newsfeed():
-    return dict(get_user_name_from_email=get_user_name_from_email)
+    logged_in = auth.user_id is not None
+    if (not logged_in):
+        redirect(URL('default', 'user'))
 
+    return dict(logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
 def user():
     """
     exposes:
