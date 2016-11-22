@@ -88,6 +88,10 @@ var app = function() {
         self.vue.is_editing_post = !self.vue.is_editing_post;
     };
 
+    self.add_picture_button = function () {
+        self.vue.is_adding_picture = !self.vue.is_adding_picture;
+    }
+
     self.edit_post = function(p_id) {
         $.post(edit_post_url,
             {
@@ -119,6 +123,7 @@ var app = function() {
         unsafeDelimiters: ['!{', '}'],
         data: {
             is_adding_post: false,
+            is_adding_picture: false,
             is_editing_post: false,
             posts: [],
             logged_in: false,
@@ -134,6 +139,7 @@ var app = function() {
         methods: {
             get_more: self.get_more,
             add_post_button: self.add_post_button,
+            add_picture_button: self.add_picture_button,
             edit_post_button: self.edit_post_button,
             add_post: self.add_post,
             edit_post: self.edit_post,
