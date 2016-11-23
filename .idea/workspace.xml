@@ -6,7 +6,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/default.py" afterPath="$PROJECT_DIR$/controllers/default.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/databases/sql.log" afterPath="$PROJECT_DIR$/databases/sql.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/default/housemate.html" afterPath="$PROJECT_DIR$/views/default/housemate.html" />
     </list>
     <ignored path="paying.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,10 +29,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="housemate.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="housemate.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/default/housemate.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
+            <state relative-caret-position="373">
               <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
               <folding />
             </state>
@@ -50,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="default.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="default.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/default.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="48" column="16" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
+            <state relative-caret-position="425">
+              <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -63,7 +62,7 @@
       <file leaf-file-name="individual_loans.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/default/individual_loans.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2176">
+            <state relative-caret-position="797">
               <caret line="128" column="89" selection-start-line="128" selection-start-column="89" selection-end-line="128" selection-end-column="89" />
               <folding />
             </state>
@@ -93,7 +92,7 @@
       <file leaf-file-name="subscriptions.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/default/subscriptions.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
+            <state relative-caret-position="2210">
               <caret line="130" column="89" selection-start-line="130" selection-start-column="89" selection-end-line="130" selection-end-column="89" />
               <folding />
             </state>
@@ -103,7 +102,7 @@
       <file leaf-file-name="default_index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/js/default_index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2839">
+            <state relative-caret-position="823">
               <caret line="167" column="33" selection-start-line="167" selection-start-column="33" selection-end-line="167" selection-end-column="33" />
               <folding />
             </state>
@@ -141,8 +140,8 @@
         <option value="$PROJECT_DIR$/static/js/default_index.js" />
         <option value="$PROJECT_DIR$/views/appadmin.html" />
         <option value="$PROJECT_DIR$/static/css/myapp.css" />
-        <option value="$PROJECT_DIR$/controllers/default.py" />
         <option value="$PROJECT_DIR$/views/default/housemate.html" />
+        <option value="$PROJECT_DIR$/controllers/default.py" />
       </list>
     </option>
   </component>
@@ -812,34 +811,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/api.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="79" selection-start-line="22" selection-start-column="79" selection-end-line="22" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/tables.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/appadmin.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
           <caret line="243" column="9" selection-start-line="243" selection-start-column="9" selection-end-line="243" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/default_index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2839">
-          <caret line="167" column="33" selection-start-line="167" selection-start-column="33" selection-end-line="167" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -859,34 +834,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/default/individual_loans.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2176">
-          <caret line="128" column="89" selection-start-line="128" selection-start-column="89" selection-end-line="128" selection-end-column="89" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/default.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="16" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/default/subscriptions.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
+        <state relative-caret-position="2210">
           <caret line="130" column="89" selection-start-line="130" selection-start-column="89" selection-end-line="130" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="79" selection-start-line="22" selection-start-column="79" selection-end-line="22" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/default_index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="823">
+          <caret line="167" column="33" selection-start-line="167" selection-start-column="33" selection-end-line="167" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/tables.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/default/individual_loans.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="797">
+          <caret line="128" column="89" selection-start-line="128" selection-start-column="89" selection-end-line="128" selection-end-column="89" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/default/housemate.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
+        <state relative-caret-position="373">
           <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/default.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
           <folding />
         </state>
       </provider>

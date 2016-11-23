@@ -34,6 +34,7 @@ def settings():
     grid = SQLFORM(db.pictures, ignore_rw=True, deletable=True)
     if grid.process().accepted:
         response.flash = 'form accepted'
+        redirect(URL('default', 'newsfeed'))
     elif grid.errors:
         response.flash = 'form has errors'
 
@@ -47,12 +48,14 @@ def settings():
 
 
 def housemate():
-    #row = db(db.pictures.user_email == "default@ucsc.edu").select().first()
-    picture = None
     if auth.user is not None:
         row = db(db.pictures.user_email == auth.user.email).select().first()
         if row is not None:
             picture = row.file_name
+        else:
+            row = db(db.pictures.user_email == "default@ucsc.edu").select().first()
+            if row is None: picture = None
+            else: picture = row.file_name
 
     logged_in = auth.user_id is not None
 
