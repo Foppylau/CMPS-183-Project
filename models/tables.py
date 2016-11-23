@@ -34,5 +34,11 @@ db.define_table('pictures',
 db.pictures.title.requires = IS_NOT_IN_DB(db, db.pictures.title)
 db.pictures.user_email.requires = IS_NOT_IN_DB(db, db.pictures.user_email)
 
+db.define_table('item',
+                Field('item_name', 'text'),
+                Field('contributers', 'text'),
+                Field('price', 'decimal(7,2)')
+                )
+
 # after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)

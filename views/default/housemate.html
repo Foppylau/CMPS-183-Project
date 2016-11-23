@@ -11,13 +11,17 @@
 {{end}}
 
 
-<body class="housemates">
+<body class="user_container groups">
 <div class="col-lg-9" style="width:78%;">
 
     <h2 style="display: inline-block; text-align: center;">Housemates</h2>
     <ul class="nav navbar-nav navbar-right" style="display: inline-block;">
         {{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
     </ul>
+
+    <div class="btn navbar-right">
+                <a href={{=URL('default', 'settings')}}>Settings</a>
+    </div>
 
     <div id="vue-div" class="bills">
         <div class="button_bar">
@@ -71,16 +75,16 @@
 
                         <div class="billInfo" v-if="!is_editing_post">
                             <div class="billheader">
-                                <h3>${post.post_content}</h3>
+                                <h2>${post.post_content}</h2>
                               <!--  <p>By ${post.user_email}</p>-->
                                 <p>Total Price: ${post.price}</p>
                                 <p>Status: ${post.status}</p>
                             </div>
                             <div class="billfooter">
-                                <p style="display: inline-block; ">On: ${post.created_on}</p>
-                                <i class="fa fa-trash-o" v-if="post.mypost" style="display: inline-block; " v-on:click="delete_post(post.id)"></i>
-                                <i class="fa fa-pencil" v-if="post.mypost"style="display:inline-block;" v-on:click="edit_post_button()" v-bind:class="{'disabled': !logged_in}"></i>
-                                <i class="fa fa-plus" v-if="post.mypost"style="display:inline-block;" aria-hidden="true"></i>
+                                <p style="display: inline-block; float:left; ">${post.created_on}</p>
+                                <i class="fa fa-trash-o" v-if="post.mypost" style="display: inline-block; float:right; " v-on:click="delete_post(post.id)"></i>
+                                <i class="fa fa-pencil" v-if="post.mypost"style="display:inline-block; float:right;" v-on:click="edit_post_button()" v-bind:class="{'disabled': !logged_in}"></i>
+                                <i class="fa fa-plus" v-if="post.mypost"style="display:inline-block; float:right;" aria-hidden="true"></i>
                             </div>
                         </div>
 
@@ -101,19 +105,16 @@
                         </div>
 
 
-                        <div v-if=""class=""bodyItems>
+                        <div class="item_style">
                             <div class="item">
-                                <p>Item1</p>
-                                <p>Item2</p>
-                                <p>Item3</p>
+                                <table>
+                                    <td>Eggs</td>
+                                    <td>$11</td>
+                                    <td>Jerry, Winnie, Seth</td>
+                                </table>
                             </div>
-
-
                         </div>
-
                     </div>
-
-
             </div>
            <!-- <div v-if="has_more" class="show_more"><button class="btn btn-default" v-on:click="get_more()">Load more</button></div>-->
         </div>
@@ -124,12 +125,10 @@
 {{if auth.user_id is not None:}}
     <div class="sidebar col-lg-3" >
         <div class="profile">
-            <div class="btn btn-group-justified">
-                <a href={{=URL('default', 'settings')}}>Settings</a>
-            </div>
+
 
             <div id="circle">
-                <img src="{{=URL('default', 'download', args=profile_pic)}}" width=120 height=120 >
+                <img src="{{=URL('default', 'download', args=profile_pic)}}" width=125 height=125 >
             </div>
 
             <p v-if="logged_in"style="font-size:15px;">{{=get_user_name_from_email(auth.user.email)}}</p>

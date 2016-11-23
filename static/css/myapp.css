@@ -45,6 +45,12 @@
     right: 0;
     background-color: #5C7F6E;
     padding-top: 10px;
+    opacity: 0.8;
+}
+
+.groups{
+    background-color: #959595;
+    color: #000000;
 }
 
 .profile{
@@ -58,16 +64,12 @@
     width: 125px;
     height: 125px;
     padding: 0px 0px 0px 3px;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    border-radius: 90px;
-    background-image:url("slug.png");
-    background-size:cover;
-    border-style:solid;
 }
 
 img{
     border-radius: 50%;
+    border-style:solid;
+    border-width: 2px;
     -ms-transform: rotate(90deg); /* IE 9 */
     -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
     transform: rotate(90deg);
@@ -83,30 +85,25 @@ img{
     transition: 0.3s
 }
 
-.housemates {
-    background-color: #ecf0f1;
-    color: #000000;
-}
+/*.newsfeed {*/
+    /*background-color: #3498db;*/
+    /*color: #000000;*/
+/*}*/
 
-.newsfeed {
-    background-color: #3498db;
-    color: #000000;
-}
+/*.events {*/
+    /*background-color: #e74c3c;*/
+    /*color: #000000;*/
+/*}*/
 
-.events {
-    background-color: #e74c3c;
-    color: #000000;
-}
+/*.subscriptions {*/
+    /*background-color: #f1c40f;*/
+    /*color: #000000;*/
+/*}*/
 
-.subscriptions {
-    background-color: #f1c40f;
-    color: #000000;
-}
-
-.loans{
-    background-color: #9b59b6;
-    color: #000000;
-}
+/*.loans{*/
+    /*background-color: #9b59b6;*/
+    /*color: #000000;*/
+/*}*/
 
 .categories{
     border-top-style:solid;
@@ -115,7 +112,7 @@ img{
 }
 
 .categories button{
-    height: 15%;
+    height: 12%;
     width: 100%;
     text-align: center;
 }
@@ -126,7 +123,16 @@ img{
 
 /******************************************** End of Styling for Sidebar ******************************************/
 
-
+.user_container{
+    background:url("user_background.JPG") no-repeat center center fixed;
+    height:100%;
+    width:100%;
+    margin: 0px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 /*!* line 27, ../sass/_main.scss *!*/
 /*.main_content .splash_container .main_splash h3 .fa {*/
   /*margin-right: 0.5em;*/
@@ -278,10 +284,23 @@ div.table_footer span.pagine.disabled i.fa {
     border-style: solid;
     border-width: 1px;
     background: #eeeeee;
+    width: 32em;
     margin: 10px;
     padding: 5px;
     border-radius: 15px;
+    opacity: 0.8;
+}
 
+.item_style{
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    background: #eeeeee;
+    width: 12em;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 15px;
+    opacity: 0.8;
 }
 
 .billheader{
