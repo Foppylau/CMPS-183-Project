@@ -23,19 +23,19 @@
 .edit_button{
     padding:0px;
 }
+
 .content{
     border-radius: 10px;
 }
 
-.item p{
-    display: inline-block;
-}
 
 .s{
     color:white;
     font-size:0px;
     display:none;
 }
+
+/********************************************* Styling for Sidebar ************************************************/
 .sidebar{
     height: 100%;
     width: 290px;
@@ -51,8 +51,6 @@
     display: block;
     width:100%;
     height:200px;
-    bottom-border: solid 3px black;
-
 }
 
 #circle {
@@ -68,6 +66,11 @@
     border-style:solid;
 }
 
+img{
+    border-radius: 50%;
+    image-orientation: 90deg;
+}
+
 .profile p{
     width:120px;
     margin: 0 auto;
@@ -78,22 +81,6 @@
     transition: 0.3s
 }
 
-.categories{
-    border-top-style:solid;
-    overflow-y:scroll;
-    height:700px;
-}
-
-.categories button{
-    height: 15%;
-    width: 100%;
-    text-align: center;
-}
-
-.categories a{
-    overflow-y:scroll;
-}
-/* line 13, ../sass/_main.scss */
 .housemates {
     background-color: #ecf0f1;
     color: #000000;
@@ -119,8 +106,24 @@
     color: #000000;
 }
 
-.bills{
+.categories{
+    border-top-style:solid;
+    overflow-y:scroll;
+    height:700px;
 }
+
+.categories button{
+    height: 15%;
+    width: 100%;
+    text-align: center;
+}
+
+.categories a{
+    overflow-y:scroll;
+}
+
+/******************************************** End of Styling for Sidebar ******************************************/
+
 
 /*!* line 27, ../sass/_main.scss *!*/
 /*.main_content .splash_container .main_splash h3 .fa {*/
@@ -238,9 +241,7 @@ div.table_footer span.pagine.disabled i.fa {
     cursor: not-allowed;
 }
 
-.allPosts{
-
-}
+/********************************************** All the Bills ******************************************************/
 
 .result_table{
     margin-top: 0px;
@@ -253,24 +254,48 @@ div.table_footer span.pagine.disabled i.fa {
     display: inline-block;
 }
 
+/******************************************* End of All the Bills ************************************************/
+
+/*************************************************Each Bill******************************************************/
+.billInfo{
+    width:100%;
+    border-bottom-color: #0a001f;
+    border-bottom-width: thin;
+    border-bottom-style: solid;
+    text-align:center;
+
+}
+
+.billInfo i{
+    padding-right: 10px;
+    cursor: pointer;
+}
+
 .posts_style {
     border-color: #cccccc;
     border-style: solid;
     border-width: 1px;
     background: #eeeeee;
-    width: 960px;
-    height: auto;
-    margin-right: 20px;
-    margin-bottom: 10px;
-    padding-left: 10px;
-    -moz-border-radius: 16px;
-    -webkit-border-radius: 16px;
-    border-radius: 16px;
-    float:left;
-    display: inline-block;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 15px;
+
 }
 
-/* USER LOG-IN PAGE */
+.billheader{
+    position: center;
+    width:70%; /* 70% of the parent*/
+    margin:10px auto;
+
+}
+
+.billfooter{
+    width:100%;
+}
+
+/*************************************************End  of Each Bill************************************************/
+
+/************************************************* USER LOG-IN PAGE ***********************************************/
 .userPage{
     border: 2px solid #FFFFFF;
 	color: #FFFFFF;
@@ -293,8 +318,9 @@ div.table_footer span.pagine.disabled i.fa {
     background-image:url("payback.png");
     background-size:cover;
 }
+/**************************** End of USER LOG-IN PAGE ************************/
 
-/* WELCOME PAGE */
+/******************************** Welcome Page **********************************/
 .row{
     margin: 0px;
 }
@@ -358,3 +384,5 @@ html, body {
     height: 100%;
     width: 100%;
 }
+
+/***************************End of Welcome Page *****************************/

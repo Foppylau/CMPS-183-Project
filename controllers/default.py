@@ -31,36 +31,91 @@ def index():
     return dict(logged_in=logged_in, message=T('Welcome to PayMe!'))
 
 def housemate():
+    picture = None
+    if auth.user is not None:
+        row = db(db.pictures.user_email == auth.user.email).select().first()
+        if row is not None:
+            picture = row.file_name
+
     logged_in = auth.user_id is not None
-    if(not logged_in):
+
+    if (not logged_in):
         redirect(URL('default', 'user'))
 
-    return dict(logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
+    return dict(profile_pic=picture, logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
 
 def events():
+    picture = None
+    if auth.user is not None:
+        row = db(db.pictures.user_email == auth.user.email).select().first()
+        if row is not None:
+            picture = row.file_name
+
     logged_in = auth.user_id is not None
+
     if (not logged_in):
         redirect(URL('default', 'user'))
 
-    return dict(logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
+    return dict(profile_pic=picture, logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
+
 def individual_loans():
+    picture = None
+    if auth.user is not None:
+        row = db(db.pictures.user_email == auth.user.email).select().first()
+        if row is not None:
+            picture = row.file_name
+
     logged_in = auth.user_id is not None
+
     if (not logged_in):
         redirect(URL('default', 'user'))
 
-    return dict(logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
+    return dict(profile_pic=picture, logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
+
 def subscriptions():
+    picture = None
+    if auth.user is not None:
+        row = db(db.pictures.user_email == auth.user.email).select().first()
+        if row is not None:
+            picture = row.file_name
+
     logged_in = auth.user_id is not None
+
     if (not logged_in):
         redirect(URL('default', 'user'))
 
-    return dict(logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
+    return dict(profile_pic=picture, logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
+
 def newsfeed():
+    picture = None
+    if auth.user is not None:
+        row = db(db.pictures.user_email == auth.user.email).select().first()
+        if row is not None:
+            picture = row.file_name
+
     logged_in = auth.user_id is not None
+
     if (not logged_in):
         redirect(URL('default', 'user'))
 
-    return dict(logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
+    return dict(profile_pic=picture, logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
+
+def settings():
+    grid = SQLFORM(db.pictures, ignore_rw=True, deletable=True)
+    if grid.process().accepted:
+        response.flash = 'form accepted'
+        redirect(URL('default', 'newsfeed'))
+    elif grid.errors:
+        response.flash = 'form has errors'
+
+    row = db(db.pictures.user_email == auth.user.email).select().first()
+    if row is not None:
+        picture = row.file_name
+    else:
+        picture = "slug.png"
+
+    return dict(grid = grid, profile_pic = picture)
+
 def user():
     """
     exposes:
