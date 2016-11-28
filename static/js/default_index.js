@@ -83,38 +83,62 @@ var app = function() {
         )
     };
 
-    self.edit_post_button = function () {
-        // The button to add a post has been pressed.
-        self.vue.is_editing_post = !self.vue.is_editing_post;
-    };
+
 
     self.add_picture_button = function () {
         self.vue.is_adding_picture = !self.vue.is_adding_picture;
     }
 
-    self.edit_post = function(p_id) {
-        $.post(edit_post_url,
-            {
-                post_id: p_id,
-                edit_content: self.vue.edit_content
-            },
-            function () {
-                $.web2py.enableElement($("#edit_post_submit"));
-                var idx = null;
-                for (var i = 0; i < self.vue.posts.length; i++) {
-                    if (self.vue.posts[i].id === post_id) {
-                        // If I set this to i, it won't work, as the if below will
-                        // return false for items in first position.
-                        idx = i + 1;
-                        break;
-                    }
-                }
-                if (idx) {
-                    self.vue.posts.splice(idx - 1, 1, self.vue.edit_content);
-                }
-            }
-        )
+    // self.edit_post_button = function () {
+    //     // The button to add a post has been pressed.
+    //     self.vue.is_editing_post = !self.vue.is_editing_post;
+    // };
+
+    self.edit_post = function(post_idx){
+        var post = self.vue.posts[post_idx];
+        self.vue.selected_idx = post_idx;
+        self.vue.edited_content = post.content;
+        self.vue.is_adding_post = false;
     };
+
+    self.update_post = function (post_idx) {
+       $.post(edit_post_url,
+           {
+               post_id: self.vue.posts[post_idx].id,
+               edit_content: self.vue.edited_content
+           },
+           function (data) {
+               //hides the edit form after post has been updated
+               if(!data.idx)
+                    self.vue.selected_idx = null;
+                self.get_posts();
+           });
+    };
+
+    // self.edit_post = function(p_id) {
+    //     $.post(edit_post_url,
+    //         {
+    //             post_id: p_id,
+    //             edit_content: self.vue.edit_content
+    //
+    //         },
+    //         function () {
+    //             $.web2py.enableElement($("#edit_post_submit"));
+    //             var idx = null;
+    //             for (var i = 0; i < self.vue.posts.length; i++) {
+    //                 if (self.vue.posts[i].id === post_id) {
+    //                     // If I set this to i, it won't work, as the if below will
+    //                     // return false for items in first position.
+    //                     idx = i + 1;
+    //                     break;
+    //                 }
+    //             }
+    //             if (idx) {
+    //                 self.vue.posts.splice(idx - 1, 1, self.vue.edit_content);
+    //             }
+    //         }
+    //     )
+    // };
 
 
     self.vue = new Vue({
@@ -128,6 +152,8 @@ var app = function() {
             posts: [],
             logged_in: false,
             has_more: false,
+            selected_idx: null,
+            edited_content: null,
             form_content: null,
             edit_content: null,
             form_payer: null,

@@ -78,6 +78,7 @@ def del_post():
     db(db.post.id == request.vars.post_id).delete()
     return "ok"
 
+
 @auth.requires_signature()
 def edit_post():
     t_id = request.vars.post_id
@@ -85,6 +86,20 @@ def edit_post():
     print(request.vars.edit_content)
     row.update_record(post_content=request.vars.edit_content)
 
+def update_post():
+    """Here we get edits to a post and update the database"""
+
+    #This check prevents empty updates from being submitted
+    if request.vars.edit_content != "":
+        p = db.post(request.vars.post_id)
+        p.post_content = request.vars.edit_content
+        p.updated_on = datetime.datetime.utcnow()
+        p.update_record()
+        response.flash = T("Post Updated")
+        return response.json(dict(post=p, idx = False))
+    else:
+        response.flash = T("Post Cannot Be Empty")
+        return response.json(dict(idx=True))
 
 # def update_post():
 #     """Here we get edits to a post and update the database"""
