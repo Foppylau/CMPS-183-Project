@@ -11,131 +11,134 @@
 {{end}}
 
 
-<body class="newsfeed">
-<div class="col-lg-10">
+<body class="user_container groups newsfeed">
+<div class="col-lg-9" style="width:78%;">
 
-    <h2 style="text-align: center; position: static;">News Feed</h2>
-    <ul class="nav navbar-nav navbar-right">
-                {{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
+    <h2 style="display: inline-block; text-align: center;">News Feed</h2>
+    <ul class="nav navbar-nav navbar-right" style="display: inline-block;">
+        {{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
     </ul>
+
 
     <div id="vue-div" class="bills">
         <div class="button_bar">
             <button v-if="!is_adding_post" class="btn btn-danger btn-sm" v-on:click="add_post_button()" v-bind:class="{'disabled': !logged_in}">
-            {{=icon_add}}Add Bill
+                {{=icon_add}}Add Bill
             </button>
             <button v-if="is_adding_post" class="btn btn-warning btn-sm" v-on:click="add_post_button()">
-            {{=icon_cancel}}Cancel
+                {{=icon_cancel}}Cancel
             </button>
-    </div>
-
-
-        <div v-if="is_adding_post" id="add_post_div">
-            <form action="#" v-on:submit.prevent="add_post()" class="form-horizontal" enctype="multipart/form-data" method="post">
-                <div class="form-group" id="no_table_artist__row">
-                    <div>
-                        <input class="form-control string" id="no_table_content" v-model="form_content" placeholder="Content" type="text" />
-                        <input class="form-control string" id="no_table_artist" v-model="form_payer" placeholder="Payer" type="text" />
-                        <select class="form-control string" id="no_table_artist" v-model="form_circle" placeholder="Group" type="text">
-                            <option value="" disabled selected hidden>Select your option</option>
-                            <option value="Housemates">Housemates</option>
-                            <option value="Events">Events</option>
-                            <option value="Individual loans">Individual loans</option>
-                            <option value="Subscriptions">Subscriptions</option>
-                        </select>
-                        <input class="form-control string" id="no_table_artist" v-model="form_bill" placeholder="Bill Name" type="text" />
-                        <input class="form-control string" id="no_table_artist" v-model="form_price" placeholder="Price: $" type="decimal" />
-                        <select class="form-control string" id="no_table_artist" v-model="form_status" placeholder="Group" type="text">
-                            <option value="Pay">Pay</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Confirmed">Confirmed</option>
-
-                    </div>
-                </div>
-                <div v-if="is_adding_post" v-on:click="add_post_button()" class="form-group" id="submit_record__row">
-                    <div>
-                        <input class="btn btn-primary" id="add_post_submit" type="submit" value="Submit" />
-                    </div>
-                </div>
-            </form>
         </div>
+
+
+    <div v-if="is_adding_post" id="add_post_div">
+        <form action="#" v-on:submit.prevent="add_post()" enctype="multipart/form-data" method="post">
+            <div class="form-group" id="no_table_artist__row">
+                <div>
+                    <input class="content" id="no_table_content" v-model="form_content" placeholder="Bill Name" type="text" />
+                   <!-- <input class="content" id="no_table_artist" v-model="form_payer" placeholder="Payer" type="text" />-->
+                    <select class="content" id="no_table_artist" v-model="form_circle" placeholder="Group" type="text">
+                        <option value="selected"  class="s">Select your option</option>
+                        <option value="Housemates">Housemates</option>
+                        <option value="Events">Events</option>
+                        <option value="Individual loans">Individual loans</option>
+                        <option value="Subscriptions">Subscriptions</option>
+                    </select>
+                  <!--  <input class="content" id="no_table_artist" v-model="form_bill" placeholder="Bill Name" type="text" />-->
+                    <input class="content" id="no_table_artist" v-model="form_price" placeholder="Price: $" type="decimal" />
+                    <select class="content" id="no_table_artist" v-model="form_status" placeholder="Group" type="text">
+                        <option value="Pay">Pay</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Confirmed">Confirmed</option>
+                        </select>
+
+                </div>
+            </div>
+
+            <div v-if="is_adding_post" v-on:click="add_post_button()" class="form-group" id="submit_record__row">
+                <div>
+                    <input class="btn" id="add_post_submit" type="submit" value="Submit" />
+                </div>
+            </div>
+
+        </form>
+    </div>
 
         <div class="result_table" v-bind:style="style_result">
 
             <div class ="posts_style" v-for="post in posts">
 
-            <div class="button_bar">
-                <button v-if="!is_editing_post" class="btn btn-danger btn-sm" v-on:click="edit_post_button" v-bind:class="{'disabled': !logged_in}">
-                    {{=icon_edit}}Edit post
-                </button>
+            <div class="billInfo" v-if="!is_editing_post">
+                            <div class="billheader">
+                                <h2>${post.post_content}</h2>
+                              <!--  <p>By ${post.user_email}</p>-->
+                                <p>Total Price: ${post.price}</p>
+                                <p>Status: ${post.status}</p>
+                            </div>
+                            <div class="billfooter">
+                                <p style="display: inline-block; float:left; ">${post.created_on}</p>
+                                <i class="fa fa-trash-o" v-if="post.mypost" style="display: inline-block; float:right; " v-on:click="delete_post(post.id)"></i>
+                                <i class="fa fa-pencil" v-if="post.mypost"style="display:inline-block; float:right;" v-on:click="edit_post(post.id)" v-bind:class="{'disabled': !logged_in}"></i>
+                                <i class="fa fa-plus" v-if="post.mypost"style="display:inline-block; float:right;" aria-hidden="true"></i>
+                            </div>
+                        </div>
 
-                <div v-if="!is_editing_post"><h2>${post.post_content}</h2></div>
+                        <div v-if="is_editing_post" id="edit_post_div">
+                            <form action="#" v-on:submit.prevent="edit_post(post.id)" class="form-horizontal" enctype="multipart/form-data" method="post">
+                                <div class="editing_content">
+                                    <textarea class="string" id="no_table_content" v-model="post.post_content" value="pre-fill" type="text"> </textarea>
+                                    <textarea class=" string" id="no_table_content" v-model="post.price" value="pre-fill" type="text"> </textarea>
+                                    <textarea class="string" id="no_table_content" v-model="post.status" value="pre-fill" type="text"> </textarea>
+                                </div>
+                                <div v-if="is_editing_post" v-on:click="update_post(post.id)" id="submit_record__row">
+                                    <input class="btn" id="edit_post_submit" type="submit" value="Submit" />
+                                </div>
+                                <button class="btn btn-warning btn-sm" v-on:click="edit_post_button()">
+                                {{=icon_cancel}}Cancel
+                                </button>
+                            </form>
+                        </div>
 
-                <button v-if="is_editing_post" class="btn btn-warning btn-sm" v-on:click="edit_post_button()">
-                    {{=icon_cancel}}Cancel
-                </button>
-            </div>
 
-        <div v-if="is_editing_post" id="edit_post_div">
-            <form action="#" v-on:submit.prevent="edit_post(post.id)" class="form-horizontal" enctype="multipart/form-data" method="post">
-                <div class="form-group" id="no_table_artist__row">
-                    <div>
-                        <textarea class="form-control string" id="no_table_content" v-model="edit_content" value="pre-fill" type="text"> </textarea>
-                        <span class="help-block">Edit your post here, refresh to see edit</span>
-                    </div>
-                </div>
-                <div v-if="is_editing_post" v-on:click="edit_post_button()" class="form-group" id="submit_record__row">
-                    <div>
-                        <input class="btn btn-primary" id="edit_post_submit" type="submit" value="Submit" />
-                    </div>
-                </div>
-            </form>
+                        <div class="item_style">
+                            <div class="item">
+                                <table>
+                                    <td>Eggs</td>
+                                    <td>$11</td>
+                                    <td>Jerry, Winnie, Seth</td>
+                                </table>
+                            </div>
+                        </div>
         </div>
-
-                <p>User: ${post.user_email}</p>
-                <p>Created On: ${post.created_on}</p>
-                <p>Updated: ${post.updated_on}</p>
-                <p>Creator: ${post.creator}</p>
-                <p>Payer: ${post.payer}</p>
-                <p>Group: ${post.circle}</p>
-                <p>Bill Name: ${post.bill}</p>
-                <p>Price: ${post.price}</p>
-                <p>Status: ${post.status}</p>
-
-                <p style="text-align: center; width:6%; display: inline-block; " v-on:click="delete_post(post.id)">
-                    {{=icon_delete}}
-                </p>
-
-
-
-        </div>
-
-
         </div>
 
     </div>
     </div>
 
-    <div class="sidebar col-lg-3">
+{{if auth.user_id is not None:}}
+    <div class="sidebar col-lg-3" >
         <div class="profile">
+
+
             <div id="circle">
+                <img src="{{=URL('default', 'download', args=profile_pic)}}" width=125 height=125 >
             </div>
-            <p style="font-size:20px;">Seth</p>
+
+            <p v-if="logged_in"style="font-size:15px;">{{=get_user_name_from_email(auth.user.email)}}</p>
             <p style="text-decoration-color: red;">Owes: </p>
             <p style="text-decoration-color: blue;">Pending: </p>
 
         </div>
         <div class="categories">
-            <div class="eventNames">
+
                 <a href={{=URL('default', 'housemate')}}><button class="housemates">Housemates</button></a>
                 <a href={{=URL('default', 'events')}}><button class="events">Events</button></a>
                 <a href={{=URL('default', 'individual_loans')}}><button class="loans">Individual Loans</button></a>
                 <a href={{=URL('default', 'subscriptions')}}><button class="subscriptions">Subscriptions</button></a>
                 <a href={{=URL('default', 'newsfeed')}}><button class="newsfeed">News Feed</button></a>
-            </div>
         </div>
     </div>
-
+{{pass}}
 </body>
 
 

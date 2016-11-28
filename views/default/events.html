@@ -19,10 +19,6 @@
         {{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
     </ul>
 
-    <div class="btn navbar-right">
-                <a href={{=URL('default', 'settings')}}>Settings</a>
-    </div>
-
     <div id="vue-div" class="bills">
         <div class="button_bar">
             <button v-if="!is_adding_post" class="btn btn-danger btn-sm" v-on:click="add_post_button()" v-bind:class="{'disabled': !logged_in}">
@@ -124,7 +120,7 @@
 
 
             <div id="circle">
-                <img src="{{=URL('default', 'download', args=profile_pic)}}" width=125 height=125 >
+                <a href={{=URL('default', 'settings')}}><img src="{{=URL('default', 'download', args=profile_pic)}}" width=125 height=125 ></a>
             </div>
 
             <p v-if="logged_in"style="font-size:15px;">{{=get_user_name_from_email(auth.user.email)}}</p>
