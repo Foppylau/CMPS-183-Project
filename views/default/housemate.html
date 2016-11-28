@@ -125,7 +125,7 @@
 
 
             <div id="circle">
-                <img src="{{=URL('default', 'download', args=profile_pic)}}" width=125 height=125 >
+                <a href={{=URL('default', 'settings')}}><img src="{{=URL('default', 'download', args=profile_pic)}}" width=125 height=125 ></a>
             </div>
 
             <p v-if="logged_in"style="font-size:15px;">{{=get_user_name_from_email(auth.user.email)}}</p>
