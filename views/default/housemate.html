@@ -19,7 +19,6 @@
         {{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
     </ul>
 
-
     <div id="vue-div" class="bills">
         <div class="button_bar">
             <button v-if="!is_adding_post" class="btn btn-danger btn-sm" v-on:click="add_post_button()" v-bind:class="{'disabled': !logged_in}">
@@ -80,7 +79,7 @@
                             <div class="billfooter">
                                 <p style="display: inline-block; float:left; ">${post.created_on}</p>
                                 <i class="fa fa-trash-o" v-if="post.mypost" style="display: inline-block; float:right; " v-on:click="delete_post(post.id)"></i>
-                                <i class="fa fa-pencil" v-if="post.mypost"style="display:inline-block; float:right;" v-on:click="edit_post(post.id)" v-bind:class="{'disabled': !logged_in}"></i>
+                                <i class="fa fa-pencil" v-if="post.mypost"style="display:inline-block; float:right;" v-on:click="edit_post_button()" v-bind:class="{'disabled': !logged_in}"></i>
                                 <i class="fa fa-plus" v-if="post.mypost"style="display:inline-block; float:right;" aria-hidden="true"></i>
                             </div>
                         </div>
@@ -92,7 +91,7 @@
                                     <textarea class=" string" id="no_table_content" v-model="post.price" value="pre-fill" type="text"> </textarea>
                                     <textarea class="string" id="no_table_content" v-model="post.status" value="pre-fill" type="text"> </textarea>
                                 </div>
-                                <div v-if="is_editing_post" v-on:click="update_post(post.id)" id="submit_record__row">
+                                <div v-if="is_editing_post" v-on:click="edit_post_button()" id="submit_record__row">
                                     <input class="btn" id="edit_post_submit" type="submit" value="Submit" />
                                 </div>
                                 <button class="btn btn-warning btn-sm" v-on:click="edit_post_button()">
@@ -104,11 +103,7 @@
 
                         <div class="item_style">
                             <div class="item">
-                                <table>
-                                    <td>Eggs</td>
-                                    <td>$11</td>
-                                    <td>Jerry, Winnie, Seth</td>
-                                </table>
+
                             </div>
                         </div>
                     </div>
