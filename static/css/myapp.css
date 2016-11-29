@@ -39,13 +39,14 @@
 .sidebar{
     height: 100%;
     width: 290px;
-    position: fixed;
+    position: relative;
     z-index: 1;
     top: 0;
     right: 0;
     background-color: #5C7F6E;
     padding-top: 10px;
     opacity: 0.8;
+    overflow: auto;
 }
 
 .groups{
@@ -407,3 +408,9 @@ html, body {
 }
 
 /***************************End of Welcome Page *****************************/
+
+/******************************** Settings Page **********************************/
+.box{
+    padding: 50px;
+}
+/***************************End of Settings Page *****************************/

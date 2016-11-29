@@ -108,7 +108,7 @@
                         </div>
                     </div>
             </div>
-           <!-- <div v-if="has_more" class="show_more"><button class="btn btn-default" v-on:click="get_more()">Load more</button></div>-->
+            <div v-if="has_more" class="show_more"><button class="btn btn-default" v-on:click="get_more()">Load more</button></div>
         </div>
 
     </div>
@@ -124,7 +124,7 @@
             </div>
 
             <p v-if="logged_in"style="font-size:15px;">{{=get_user_name_from_email(auth.user.email)}}</p>
-            <p style="text-decoration-color: red;">Owes: </p>
+            <p style="text-decoration-color: red;">Owes: $ ${bill_price}</p>
             <p style="text-decoration-color: blue;">Pending: </p>
 
         </div>

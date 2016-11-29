@@ -13,6 +13,12 @@ var app = function() {
         }
     };
 
+    // Enumerates an array.
+    var enumerate = function(v) {
+        var k=0;
+        return v.map(function(e) {e._idx = k++;});
+    };
+
     function get_posts_url(start_idx, end_idx) {
         var pp = {
             start_idx: start_idx,
@@ -28,6 +34,7 @@ var app = function() {
             self.vue.logged_in = data.logged_in;
         });
     };
+
 
     self.get_more = function () {
         var num_posts = self.vue.posts.length;
@@ -59,6 +66,8 @@ var app = function() {
                     self.vue.posts.unshift(data.post);
                 });
 
+            self.update_bill_price();
+
     };
 
     self.delete_post = function(post_id) {
@@ -83,11 +92,21 @@ var app = function() {
         )
     };
 
-
+    self.update_bill_price = function () {
+        enumerate(self.vue.posts);
+        var bill_price = 0;
+        for (var i = 0; i < self.vue.posts.length; i++) {
+            var q = self.vue.posts[i].price;
+            if (q > 0) {
+                bill_price += q * self.vue.posts[i].price;
+            }
+        }
+        self.vue.bill_price = bill_price;
+    };
 
     self.add_picture_button = function () {
         self.vue.is_adding_picture = !self.vue.is_adding_picture;
-    }
+    };
 
     // self.edit_post_button = function () {
     //     // The button to add a post has been pressed.
@@ -153,6 +172,7 @@ var app = function() {
             logged_in: false,
             has_more: false,
             selected_idx: null,
+            bill_price: 0,
             edited_content: null,
             form_content: null,
             edit_content: null,
@@ -181,6 +201,7 @@ var app = function() {
     });
 
     self.get_posts();
+    self.update_bill_price();
     $("#vue-div").show();
 
 
