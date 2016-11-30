@@ -17,27 +17,28 @@ db.define_table('post',
                 Field('post_content', 'text'),
                 Field('created_on', 'datetime', default=datetime.datetime.today()),
                 Field('updated_on', 'datetime', update=datetime.datetime.today()),
-                Field('creator', default=auth.user.email if auth.user_id else None),
-                Field('payer', 'text',default=None),
                 Field('circle', requires=IS_IN_SET(['Housemates', 'Events', 'Individual loans', 'Subscriptions'])),
-                Field('bill', 'text'),
                 Field('price', 'decimal(7,2)'),
                 Field('status', requires=IS_IN_SET(['Pay', 'Pending', 'Confirmed']))
                 )
 
 db.define_table('pictures',
-                Field('user_email', default=auth.user.email if auth.user_id else None),
-                Field('file_name', 'upload'),
-                Field('title', unique=True)
+                Field('user_email', default=auth.user.email if auth.user_id else None, readable = False),
+                Field('file_name', 'upload')
                 )
 
-db.pictures.title.requires = IS_NOT_IN_DB(db, db.pictures.title)
-db.pictures.user_email.requires = IS_NOT_IN_DB(db, db.pictures.user_email)
+
+db.pictures.user_email.readable = False
+db.pictures.user_email.writable = False
+#db.pictures.user_email.requires = IS_NOT_IN_DB(db, db.pictures.user_email)
 
 db.define_table('item',
+                Field('bill_name', 'text'),
                 Field('item_name', 'text'),
-                Field('contributers', 'text'),
-                Field('price', 'decimal(7,2)')
+                Field('creator', default=auth.user.email if auth.user_id else None),
+                Field('contributors', 'text',default=None),
+                Field('price', 'decimal(7,2)'),
+                Field('status', requires=IS_IN_SET(['Unpaid', 'Payment Pending', 'Payment Received']))
                 )
 
 # after defining tables, uncomment below to enable auditing

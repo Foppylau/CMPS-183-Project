@@ -38,10 +38,7 @@ def get_posts():
                 user_email = get_user_name_from_email(r.user_email),
                 created_on = r.created_on,
                 updated_on = r.updated_on,
-                creator = r.creator,
                 circle = r.circle,
-                bill = r.bill,
-                payer = r.payer,
                 price = r.price,
                 status = r.status,
                 mypost = mypost
@@ -63,10 +60,7 @@ def get_posts():
 def add_post():
     t_id = db.post.insert(
         post_content = request.vars.post_content,
-        creator = request.vars.creator,
         circle = request.vars.circle,
-        bill = request.vars.bill,
-        payer = request.vars.payer,
         price = request.vars.price,
         status = request.vars.status
     )
@@ -76,6 +70,7 @@ def add_post():
 @auth.requires_signature()
 def del_post():
     db(db.post.id == request.vars.post_id).delete()
+
     return "ok"
 
 
@@ -85,6 +80,19 @@ def edit_post():
     row = db(db.post.id == t_id).select().first()
     print(request.vars.edit_content)
     row.update_record(post_content=request.vars.edit_content)
+
+@auth.requires_signature()
+def add_item():
+    print("Yo")
+    bill_name = request.vars.item_name
+    #print (request.vars.post_id)
+    #row = db(db.post.id == request.vars.post_id).select().first()
+    #if row is not None:
+    #    print("adding item to " + row.post_content)
+    print("made it this far")
+    #print("adding" + request.vars.item_name + " to " + bill_name)
+    return "ok"
+
 
 def update_post():
     """Here we get edits to a post and update the database"""
@@ -100,23 +108,3 @@ def update_post():
     else:
         response.flash = T("Post Cannot Be Empty")
         return response.json(dict(idx=True))
-
-# def update_post():
-#     """Here we get edits to a post and update the database"""
-#
-#     #This check prevents empty updates from being submitted
-#     if request.vars.edit_content != "":
-#         p = db.post(request.vars.post_id)
-#         p.post_content = request.vars.edit_content
-#         p.updated_on = datetime.datetime.utcnow()
-#         p.update_record()
-#         response.flash = T("Post Updated")
-#         return response.json(dict(post=p, idx = False))
-#     else:
-#         response.flash = T("Post Cannot Be Empty")
-#         return response.json(dict(idx=True))
-
-# @auth.requires_signature()
-# def edit_post():
-#     db(db.post.post_content == request.vars.edit).update()
-#     return response.json(dict(post=t))

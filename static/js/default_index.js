@@ -48,9 +48,7 @@ var app = function() {
             $.post(add_post_url,
                 {
                     post_content: self.vue.form_content,
-                    payer: self.vue.form_payer,
                     circle: self.vue.form_circle,
-                    bill: self.vue.form_bill,
                     price: self.vue.form_price,
                     status: self.vue.form_status
                 },
@@ -89,11 +87,6 @@ var app = function() {
         self.vue.is_adding_picture = !self.vue.is_adding_picture;
     }
 
-    // self.edit_post_button = function () {
-    //     // The button to add a post has been pressed.
-    //     self.vue.is_editing_post = !self.vue.is_editing_post;
-    // };
-
     self.edit_post = function(post_idx){
         var post = self.vue.posts[post_idx];
         self.vue.selected_idx = post_idx;
@@ -110,36 +103,31 @@ var app = function() {
            function (data) {
                //hides the edit form after post has been updated
                if(!data.idx)
-                    self.vue.selected_idx = null;
+                   self.vue.selected_idx = null;
                 self.get_posts();
            });
-    };
+    }
 
-    // self.edit_post = function(p_id) {
-    //     $.post(edit_post_url,
-    //         {
-    //             post_id: p_id,
-    //             edit_content: self.vue.edit_content
-    //
-    //         },
-    //         function () {
-    //             $.web2py.enableElement($("#edit_post_submit"));
-    //             var idx = null;
-    //             for (var i = 0; i < self.vue.posts.length; i++) {
-    //                 if (self.vue.posts[i].id === post_id) {
-    //                     // If I set this to i, it won't work, as the if below will
-    //                     // return false for items in first position.
-    //                     idx = i + 1;
-    //                     break;
-    //                 }
-    //             }
-    //             if (idx) {
-    //                 self.vue.posts.splice(idx - 1, 1, self.vue.edit_content);
-    //             }
-    //         }
-    //     )
-    // };
 
+
+
+    self.add_item_button = function() {
+        self.vue.is_adding_item = !self.vue.is_adding_item;
+
+    }
+
+    self.add_item = function(post_id) {
+        $.post(add_item_url,
+            {
+                item_name: self.vue.form_item_name,
+                bill_name: self.vue.posts[post_id].post_content,
+            },
+            function (data) {
+                self.get_posts();
+                $.web2py.enableElement($("#add_item_submit"));
+                self.vue.posts.unshift(data.post);
+            });
+    }
 
     self.vue = new Vue({
         el: "#vue-div",
@@ -149,18 +137,20 @@ var app = function() {
             is_adding_post: false,
             is_adding_picture: false,
             is_editing_post: false,
+            is_adding_item: false,
             posts: [],
+            items: [],
             logged_in: false,
             has_more: false,
             selected_idx: null,
             edited_content: null,
             form_content: null,
             edit_content: null,
-            form_payer: null,
             form_circle: null,
-            form_bill: null,
             form_price: null,
-            form_status: null
+            form_status: null,
+            form_item_name: null,
+            form_item_price: null
         },
         methods: {
             get_more: self.get_more,
@@ -169,7 +159,9 @@ var app = function() {
             edit_post_button: self.edit_post_button,
             add_post: self.add_post,
             edit_post: self.edit_post,
-            delete_post: self.delete_post
+            delete_post: self.delete_post,
+            add_item_button: self.add_item_button,
+            add_item: self.add_item
 
         },
 

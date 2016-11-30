@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.TypeError'> 'str' object is not callable"
+p3
+sS'layer'
+p4
+S'/mnt/c/web2py/applications/veronica/controllers/api.py'
+p5
+sS'code'
+p6
+S'import random\n\ndef index():\n    pass\n\ndef get_user_name_from_email(email):\n    """Returns a string corresponding to the user first and last names,\n    given the user email."""\n    u = db(db.auth_user.email == email).select().first()\n    if u is None:\n        return \'None\'\n    else:\n        return \' \'.join([u.first_name, u.last_name])\n\n\n# Mocks implementation.\ndef get_posts():\n    start_idx = int(request.vars.start_idx) if request.vars.start_idx is not None else 0\n    end_idx = int(request.vars.end_idx) if request.vars.end_idx is not None else 0\n    # We just generate a lot of of data.\n    posts = []\n    has_more = False\n    rows = db().select(db.post.ALL, limitby=(start_idx, end_idx + 1), orderby=~db.post.created_on)\n\n\n\n    for i, r in enumerate(rows):\n        if i < end_idx - start_idx:\n\n            if auth.user_id is not None and r.user_email == auth.user.email:\n                mypost = True\n            else:\n                mypost = False\n\n            t = dict(\n                id = r.id,\n                post_content = r.post_content,\n                user_email = get_user_name_from_email(r.user_email),\n                created_on = r.created_on,\n                updated_on = r.updated_on,\n                circle = r.circle,\n                price = r.price,\n                status = r.status,\n                mypost = mypost\n            )\n            posts.append(t)\n        else:\n            has_more = True\n    logged_in = auth.user_id is not None\n    print(auth.user.email)\n\n    return response.json(dict(\n        posts=posts,\n        logged_in=logged_in,\n        has_more=has_more,\n\n    ))\n\n@auth.requires_signature()\ndef add_post():\n    t_id = db.post.insert(\n        post_content = request.vars.post_content,\n        circle = request.vars.circle,\n        price = request.vars.price,\n        status = request.vars.status\n    )\n    t = db.post(t_id)\n    return response.json(dict(post=t))\n\n@auth.requires_signature()\ndef del_post():\n    db(db.post.id == request.vars.post_id).delete()\n    return "ok"\n\n\n@auth.requires_signature()\ndef edit_post():\n    t_id = request.vars.post_id\n    row = db(db.post.id == t_id).select().first()\n    print(request.vars.edit_content)\n    row.update_record(post_content=request.vars.edit_content)\n\n@auth.requires_signature()\ndef add_item():\n    response.flash("Yo")\n    bill_name = request.vars.bill_name\n    #print (request.vars.post_id)\n    #row = db(db.post.id == request.vars.post_id).select().first()\n    #if row is not None:\n    #    print("adding item to " + row.post_content)\n    print("made it this far")\n    print("bill_name")\n    return "ok"\n\n\ndef update_post():\n    """Here we get edits to a post and update the database"""\n\n    #This check prevents empty updates from being submitted\n    if request.vars.edit_content != "":\n        p = db.post(request.vars.post_id)\n        p.post_content = request.vars.edit_content\n        p.updated_on = datetime.datetime.utcnow()\n        p.update_record()\n        response.flash = T("Post Updated")\n        return response.json(dict(post=p, idx = False))\n    else:\n        response.flash = T("Post Cannot Be Empty")\n        return response.json(dict(idx=True))\n\nresponse._vars=response._caller(add_item)\n'
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/mnt/c/web2py/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/mnt/c/web2py/applications/veronica/controllers/api.py", line 111, in <module>\n  File "/mnt/c/web2py/gluon/globals.py", line 417, in <lambda>\n    self._caller = lambda f: f()\n  File "/mnt/c/web2py/gluon/tools.py", line 4241, in f\n    return action(*a, **b)\n  File "/mnt/c/web2py/applications/veronica/controllers/api.py", line 85, in add_item\n    response.flash("Yo")\nTypeError: \'str\' object is not callable\n'
+p11
+s.
