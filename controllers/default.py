@@ -90,9 +90,6 @@ def housemate():
     total_owed = totals[0]
     total_owes = totals[1]
 
-
-
-
     return dict(profile_pic=picture, logged_in=logged_in, get_user_name_from_email=get_user_name_from_email, total_owes=total_owes, total_owed=total_owed)
 
 def events():
@@ -164,12 +161,9 @@ def settings():
         redirect(URL('default', 'newsfeed'))
     elif grid.errors:
         response.flash = 'form has errors'
+    
 
-    row = db(db.pictures.user_email == auth.user.email).select().first()
-    if row is not None:
-        picture = row.file_name
-
-    return dict(grid = grid, profile_pic = picture)
+    return dict(grid = grid)
 
 def user():
     """
