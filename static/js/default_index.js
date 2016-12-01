@@ -112,23 +112,20 @@ var app = function() {
     };
 
 
-
-
     self.add_item_button = function() {
         self.vue.is_adding_item = !self.vue.is_adding_item;
-
     };
 
-    self.add_item = function(post_idx, bill_namez) {
+    self.add_item = function(post_idx, bill_name) {
         $.post(add_item_url,
             {
                 item_name: self.vue.form_item_name,
-                bill_name: bill_namez,
+                bill_name: bill_name,
+                price: self.vue.form_price
             },
             function (data) {
                 if(!data.idx)
                     self.vue.selected_idx = null;
-
                 $.web2py.enableElement($("#add_item_submit"));
             });
     };
@@ -154,7 +151,7 @@ var app = function() {
             form_price: null,
             form_status: null,
             form_item_name: null,
-            form_item_price: null
+            form_price: null
         },
         methods: {
             get_more: self.get_more,

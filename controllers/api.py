@@ -106,7 +106,7 @@ def add_item():
     t_id = db.item.insert(
         bill_name = request.vars.bill_name,
         item_name = request.vars.item_name,
-        price = 40.00
+        price = request.vars.price
     )
     t = db.item(t_id)
     return response.json(dict(item=t))

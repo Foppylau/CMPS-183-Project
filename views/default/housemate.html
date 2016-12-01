@@ -87,43 +87,33 @@
                             </div>
                         </div>
 
-                        <div v-if="is_adding_item" id="add_item_div">
+
                             <div v-if="post.mypost">
                                 <p>Adding an item to: ${post.post_content}<p>
-
-
-
 
                                 <!-- <form action="#" v-on:submit.prevent="add_item(post.post_content)" enctype="multipart/form-data" method="post"> -->
                                 <form action="#" v-on:submit.prevent="add_item(post.id, post.post_content)" enctype="multipart/form-data" method="post">
                                     <div class="form-group">
-                                        <input class="content" id="no_table_content" v-model="form_item_name" placeholder="Item Name" type="text"> </textarea>
+                                        <input class="content" id="no_table_content" v-model="form_item_name" placeholder="Item Name" type="text">
+                                        <input class="content" id="no_table_artist" v-model="form_price" placeholder="Price: $" type="decimal" />
                                     </div>
                                     <div v-on:click="add_item_button()" id="submit_record__row">
                                         <input class="btn" id="add_item_submit" type="submit" value="Submit" />
                                     </div>
                                 </form>
 
-
-
-
                                 <button class="btn btn-warning btn-sm" v-on:click="add_item_button()">
                                 {{=icon_cancel}}Don't Add Item
                                 </button>
                             </div>
-                        </div>
-
 
                         <div v-for="item in items">
-                            <div v-if="item.bill_name == post.post_content">
-                                <p>${item.item_name}</p>
+                            <div class="item_style" v-if="item.bill_name == post.post_content">
+                                <p>Item: ${item.item_name}</p>
+                                <p>Price: ${item.price}</p>
                             </div>
                         </div>
-                            <div class="item_style">
-                                <div class="item">
 
-                                </div>
-                            </div>
 
                     </div>
             </div>
