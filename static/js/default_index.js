@@ -80,11 +80,33 @@ var app = function() {
                 if (idx) {
                     self.vue.posts.splice(idx - 1, 1);
                 }
+                //window.alert("hi");
             }
         )
     };
 
-
+    self.delete_item = function(item_id) {
+        $.post(del_item_url,
+            {
+                item_id: item_id
+            },
+            function () {
+                var idx = null;
+                for (var i = 0; i < self.vue.items.length; i++) {
+                    if (self.vue.items[i].id === item_id) {
+                        // If I set this to i, it won't work, as the if below will
+                        // return false for items in first position.
+                        idx = i + 1;
+                        break;
+                    }
+                }
+                if (idx) {
+                    self.vue.items.splice(idx - 1, 1);
+                }
+                //window.alert("hi");
+            }
+        )
+    };
 
     self.add_picture_button = function () {
         self.vue.is_adding_picture = !self.vue.is_adding_picture;
@@ -161,6 +183,7 @@ var app = function() {
             add_post: self.add_post,
             edit_post: self.edit_post,
             delete_post: self.delete_post,
+            delete_item: self.delete_item,
             add_item_button: self.add_item_button,
             add_item: self.add_item
 

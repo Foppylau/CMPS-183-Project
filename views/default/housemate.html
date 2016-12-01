@@ -6,6 +6,7 @@
     var posts_url = "{{=URL('api', 'get_posts')}}";
     var add_post_url = "{{=URL('api', 'add_post', user_signature=True)}}";
     var del_post_url = "{{=URL('api', 'del_post', user_signature=True)}}";
+    var del_item_url = "{{=URL('api', 'del_item', user_signature=True)}}";
     var edit_post_url = "{{=URL('api', 'edit_post', user_signature=True)}}";
     var add_item_url = "{{=URL('api', 'add_item', user_signature=True)}}";
 </script>
@@ -88,11 +89,11 @@
                         </div>
 
 
-                            <div v-if="post.mypost">
-                                <p>Adding an item to: ${post.post_content}<p>
+                            <div v-if="post.mypost" >
+                                <p v-if="is_adding_item">Adding an item to: ${post.post_content}<p>
 
                                 <!-- <form action="#" v-on:submit.prevent="add_item(post.post_content)" enctype="multipart/form-data" method="post"> -->
-                                <form action="#" v-on:submit.prevent="add_item(post.id, post.post_content)" enctype="multipart/form-data" method="post">
+                                <form action="#" v-if="is_adding_item" v-on:submit.prevent="add_item(post.id, post.post_content)" enctype="multipart/form-data" method="post">
                                     <div class="form-group">
                                         <input class="content" id="no_table_content" v-model="form_item_name" placeholder="Item Name" type="text">
                                         <input class="content" id="no_table_artist" v-model="form_price" placeholder="Price: $" type="decimal" />
@@ -102,15 +103,16 @@
                                     </div>
                                 </form>
 
-                                <button class="btn btn-warning btn-sm" v-on:click="add_item_button()">
-                                {{=icon_cancel}}Don't Add Item
+                                <button v-if="is_adding_item" class="btn btn-warning btn-sm" v-on:click="add_item_button()">
+                                {{=icon_cancel}}Cancel
                                 </button>
                             </div>
 
                         <div v-for="item in items">
-                            <div class="item_style" v-if="item.bill_name == post.post_content">
+                            <div  class="item_style" v-if="item.bill_name == post.post_content">
                                 <p>Item: ${item.item_name}</p>
                                 <p>Price: ${item.price}</p>
+                                <i class="fa fa-trash-o" style="display: inline-block; float:right; " v-on:click="delete_item(item.id)"></i>
                             </div>
                         </div>
 

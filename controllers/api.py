@@ -23,8 +23,6 @@ def get_posts():
     has_more = False
     rows = db().select(db.post.ALL, limitby=(start_idx, end_idx + 1), orderby=~db.post.created_on)
 
-
-
     for i, r in enumerate(rows):
         if i < end_idx - start_idx:
 
@@ -51,6 +49,7 @@ def get_posts():
     item_rows = db().select(db.item.ALL)
     for i, r in enumerate(item_rows):
         t = dict(
+            id = r.id,
             bill_name = r.bill_name,
             item_name = r.item_name,
             creator = r.creator,
@@ -62,7 +61,7 @@ def get_posts():
 
 
     logged_in = auth.user_id is not None
-    print(auth.user.email)
+    print(posts)
 
     return response.json(dict(
         posts=posts,
@@ -86,6 +85,12 @@ def add_post():
 @auth.requires_signature()
 def del_post():
     db(db.post.id == request.vars.post_id).delete()
+    return "ok"
+
+@auth.requires_signature()
+def del_item():
+    print("here i am")
+    db(db.item.id == request.vars.item_id).delete()
     return "ok"
 
 
