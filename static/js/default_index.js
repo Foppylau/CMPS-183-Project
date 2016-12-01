@@ -119,11 +119,12 @@ var app = function() {
 
     };
 
-    self.add_item = function(post_idx, bill_namez) {
+    self.add_item = function(post_idx, bill_name) {
         $.post(add_item_url,
             {
                 item_name: self.vue.form_item_name,
-                bill_name: bill_namez,
+                bill_name: bill_name,
+                item_price: self.vue.form_item_price
             },
             function (data) {
                 if(!data.idx)
