@@ -23,6 +23,7 @@ var app = function() {
 
     self.get_posts = function () {
         $.getJSON(get_posts_url(0, 4), function (data) {
+            self.vue.items = data.items;
             self.vue.posts = data.posts;
             self.vue.has_more = data.has_more;
             self.vue.logged_in = data.logged_in;

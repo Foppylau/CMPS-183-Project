@@ -114,12 +114,17 @@
                         </div>
 
 
+                        <div v-for="item in items">
 
-                        <div class="item_style">
-                            <div class="item">
-
-                            </div>
+                                <p>${item.item_name}</p>
+                            
                         </div>
+                            <div class="item_style">
+                                <div class="item">
+
+                                </div>
+                            </div>
+
                     </div>
             </div>
            <!-- <div v-if="has_more" class="show_more"><button class="btn btn-default" v-on:click="get_more()">Load more</button></div>-->

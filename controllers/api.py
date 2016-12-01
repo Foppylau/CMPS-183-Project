@@ -15,11 +15,11 @@ def get_user_name_from_email(email):
 
 # Mocks implementation.
 def get_posts():
-    print "hey"
     start_idx = int(request.vars.start_idx) if request.vars.start_idx is not None else 0
     end_idx = int(request.vars.end_idx) if request.vars.end_idx is not None else 0
     # We just generate a lot of of data.
     posts = []
+    items = []
     has_more = False
     rows = db().select(db.post.ALL, limitby=(start_idx, end_idx + 1), orderby=~db.post.created_on)
 
@@ -47,11 +47,26 @@ def get_posts():
             posts.append(t)
         else:
             has_more = True
+
+    item_rows = db().select(db.item.ALL)
+    for i, r in enumerate(item_rows):
+        t = dict(
+            bill_name = r.bill_name,
+            item_name = r.item_name,
+            creator = r.creator,
+            contributors = r.contributors,
+            price = r.price,
+            status = r.status
+        )
+        items.append(t)
+
+
     logged_in = auth.user_id is not None
     print(auth.user.email)
 
     return response.json(dict(
         posts=posts,
+        items=items,
         logged_in=logged_in,
         has_more=has_more,
 
