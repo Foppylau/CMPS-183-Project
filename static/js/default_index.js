@@ -56,6 +56,7 @@ var app = function() {
                     status: self.vue.form_status
                 },
                 function (data) {
+                    self.get_posts();
                     $.web2py.enableElement($("#add_post_submit"));
                     self.vue.posts.unshift(data.post);
                 });
@@ -147,6 +148,7 @@ var app = function() {
             },
             function (data) {
                 if(!data.idx)
+                    self.get_posts();
                     self.vue.selected_idx = null;
                 $.web2py.enableElement($("#add_item_submit"));
             });
