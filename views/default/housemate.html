@@ -95,7 +95,7 @@
 
 
                                 <!-- <form action="#" v-on:submit.prevent="add_item(post.post_content)" enctype="multipart/form-data" method="post"> -->
-                                <form action="#" v-on:submit.prevent="add_post(post.id)" enctype="multipart/form-data" method="post">
+                                <form action="#" v-on:submit.prevent="add_item(post.id, post.post_content)" enctype="multipart/form-data" method="post">
                                     <div class="form-group">
                                         <input class="content" id="no_table_content" v-model="form_item_name" placeholder="Item Name" type="text"> </textarea>
                                     </div>

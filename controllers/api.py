@@ -87,7 +87,14 @@ def edit_post():
 @auth.requires_signature()
 def add_item():
     print("made it this far")
-    return "ok"
+    print(request.vars.bill_name + " : " + request.vars.item_name)
+    t_id = db.item.insert(
+        bill_name = request.vars.bill_name,
+        item_name = request.vars.item_name,
+        price = 40.00
+    )
+    t = db.item(t_id)
+    return response.json(dict(item=t))
 
 
 def update_post():

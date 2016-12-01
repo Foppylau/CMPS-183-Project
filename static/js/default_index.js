@@ -29,6 +29,8 @@ var app = function() {
         });
     };
 
+
+
     self.get_more = function () {
         var num_posts = self.vue.posts.length;
         $.getJSON(get_posts_url(num_posts, num_posts + 4), function (data) {
@@ -116,16 +118,16 @@ var app = function() {
 
     };
 
-    self.add_item = function(post_idx) {
+    self.add_item = function(post_idx, bill_namez) {
         $.post(add_item_url,
             {
                 item_name: self.vue.form_item_name,
-                bill_name: self.vue.posts[post_idx].content,
+                bill_name: bill_namez,
             },
             function (data) {
                 if(!data.idx)
                     self.vue.selected_idx = null;
-                self.get_posts();
+
                 $.web2py.enableElement($("#add_item_submit"));
             });
     };

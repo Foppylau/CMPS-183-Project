@@ -38,7 +38,7 @@ db.define_table('item',
                 Field('creator', default=auth.user.email if auth.user_id else None),
                 Field('contributors', 'text',default=None),
                 Field('price', 'decimal(7,2)'),
-                Field('status', requires=IS_IN_SET(['Unpaid', 'Payment Pending', 'Payment Received']))
+                Field('status', default='Unpaid', requires=IS_IN_SET(['Unpaid', 'Payment Pending', 'Payment Received']))
                 )
 
 # after defining tables, uncomment below to enable auditing
