@@ -85,7 +85,7 @@ var app = function() {
 
     self.add_picture_button = function () {
         self.vue.is_adding_picture = !self.vue.is_adding_picture;
-    }
+    };
 
     self.edit_post = function(post_idx){
         var post = self.vue.posts[post_idx];
@@ -106,7 +106,7 @@ var app = function() {
                    self.vue.selected_idx = null;
                 self.get_posts();
            });
-    }
+    };
 
 
 
@@ -114,20 +114,21 @@ var app = function() {
     self.add_item_button = function() {
         self.vue.is_adding_item = !self.vue.is_adding_item;
 
-    }
+    };
 
-    self.add_item = function(post_id) {
+    self.add_item = function(post_idx) {
         $.post(add_item_url,
             {
                 item_name: self.vue.form_item_name,
-                bill_name: self.vue.posts[post_id].post_content,
+                bill_name: self.vue.posts[post_idx].content,
             },
             function (data) {
+                if(!data.idx)
+                    self.vue.selected_idx = null;
                 self.get_posts();
                 $.web2py.enableElement($("#add_item_submit"));
-                self.vue.posts.unshift(data.post);
             });
-    }
+    };
 
     self.vue = new Vue({
         el: "#vue-div",

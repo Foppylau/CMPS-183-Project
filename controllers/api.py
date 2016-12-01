@@ -15,6 +15,7 @@ def get_user_name_from_email(email):
 
 # Mocks implementation.
 def get_posts():
+    print "hey"
     start_idx = int(request.vars.start_idx) if request.vars.start_idx is not None else 0
     end_idx = int(request.vars.end_idx) if request.vars.end_idx is not None else 0
     # We just generate a lot of of data.
@@ -70,7 +71,6 @@ def add_post():
 @auth.requires_signature()
 def del_post():
     db(db.post.id == request.vars.post_id).delete()
-
     return "ok"
 
 
@@ -80,17 +80,13 @@ def edit_post():
     row = db(db.post.id == t_id).select().first()
     print(request.vars.edit_content)
     row.update_record(post_content=request.vars.edit_content)
+    return "ok"
+
+
 
 @auth.requires_signature()
 def add_item():
-    print("Yo")
-    bill_name = request.vars.item_name
-    #print (request.vars.post_id)
-    #row = db(db.post.id == request.vars.post_id).select().first()
-    #if row is not None:
-    #    print("adding item to " + row.post_content)
     print("made it this far")
-    #print("adding" + request.vars.item_name + " to " + bill_name)
     return "ok"
 
 

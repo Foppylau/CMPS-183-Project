@@ -161,7 +161,7 @@ def settings():
         redirect(URL('default', 'newsfeed'))
     elif grid.errors:
         response.flash = 'form has errors'
-    
+
 
     return dict(grid = grid)
 
