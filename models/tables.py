@@ -36,7 +36,7 @@ db.define_table('item',
                 Field('bill_name', 'text'),
                 Field('item_name', 'text'),
                 Field('creator', default=auth.user.email if auth.user_id else None),
-                Field('contributors', 'text',default=None),
+                Field('contributors', 'list:string',default=None),
                 Field('price', 'decimal(7,2)'),
                 Field('status', default='Unpaid', requires=IS_IN_SET(['Unpaid', 'Payment Pending', 'Payment Received']))
                 )

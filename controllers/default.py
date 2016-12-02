@@ -27,7 +27,8 @@ def get_totals():
 
         if payers is None:
             continue
-        payers = payers.split()
+       # payers = payers.split()
+        print("payers:" )
         print(payers)
         number_of_payers = len(payers)
         if (auth.user.email in payers):
@@ -42,8 +43,6 @@ def get_totals():
         if creator is None:
             continue
 
-        print(creator)
-        print("yo!")
         if (auth.user.email == creator):
             total_owed += item.price
 

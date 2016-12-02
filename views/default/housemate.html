@@ -9,6 +9,7 @@
     var del_item_url = "{{=URL('api', 'del_item', user_signature=True)}}";
     var edit_post_url = "{{=URL('api', 'edit_post', user_signature=True)}}";
     var add_item_url = "{{=URL('api', 'add_item', user_signature=True)}}";
+    var add_contributer_url = "{{=URL('api', 'add_contributer', user_signature=True)}}";
 </script>
 {{end}}
 
@@ -109,10 +110,12 @@
                             </div>
 
                         <div v-for="item in items">
-                            <div  class="item_style" v-if="item.bill_name == post.post_content">
-                                <p>Item: ${item.item_name}</p>
-                                <p>Price: ${item.price}</p>
-                                <i class="fa fa-trash-o" style="display: inline-block; float:right; " v-on:click="delete_item(item.id)"></i>
+                            <div class="item_style" v-if="item.bill_name == post.post_content">
+                                <p style="display: inline-block;">Item: ${item.item_name}</p>
+                                <p style="display: inline-block;">Price: ${item.price}</p>
+                                <i style="display: inline-block;" class="fa fa-trash-o" style="display: inline-block; float:right; " v-on:click="delete_item(item.id)"></i>
+                                <i style="display: inline-block;" class="fa fa-plus-circle fa-2x" v-on:click="add_contributer(item.id)"></i>
+                                <p>${item.contributors}</p>
                             </div>
                         </div>
 

@@ -61,7 +61,7 @@ def get_posts():
 
 
     logged_in = auth.user_id is not None
-    print(posts)
+    print(auth.user_id)
 
     return response.json(dict(
         posts=posts,
@@ -89,7 +89,6 @@ def del_post():
 
 @auth.requires_signature()
 def del_item():
-    print("here i am")
     db(db.item.id == request.vars.item_id).delete()
     return "ok"
 
@@ -97,17 +96,21 @@ def del_item():
 @auth.requires_signature()
 def edit_post():
     t_id = request.vars.post_id
-    row = db(db.post.id == t_id).select().first()
-    print(request.vars.edit_content)
+    row = db(db.item.id == t_id).select(db.item.contributors)
     row.update_record(post_content=request.vars.edit_content)
     return "ok"
 
 
+@auth.requires_signature()
+def add_contributer():
+    t_id = request.vars.item_id
+    row = db(db.item.id == t_id).select().first()
+    print(row)
+    row.update_record(contributors=auth.user.email)
+    return "ok"
 
 @auth.requires_signature()
 def add_item():
-    print("made it this far")
-    print(request.vars.bill_name + " : " + request.vars.item_name)
     t_id = db.item.insert(
         bill_name = request.vars.bill_name,
         item_name = request.vars.item_name,

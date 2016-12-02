@@ -30,7 +30,19 @@ var app = function() {
         });
     };
 
-
+    self.add_contributer = function(item_id){
+        $.post(add_contributer_url,
+            {
+                item_id: item_id,
+                contributors: self.vue.form_contributors
+            },
+            function (data) {
+                if(!data.idx)
+                    self.get_posts();
+                $.web2py.enableElement($("#add_contributer"));
+                self.vue.contributor.unshift(data.contributors);
+            });
+    }
 
     self.get_more = function () {
         var num_posts = self.vue.posts.length;
@@ -165,6 +177,7 @@ var app = function() {
             is_adding_item: false,
             posts: [],
             items: [],
+            contributor: [],
             logged_in: false,
             has_more: false,
             selected_idx: null,
@@ -175,7 +188,7 @@ var app = function() {
             form_price: null,
             form_status: null,
             form_item_name: null,
-            form_price: null
+            form_contributors: null,
         },
         methods: {
             get_more: self.get_more,
@@ -187,8 +200,8 @@ var app = function() {
             delete_post: self.delete_post,
             delete_item: self.delete_item,
             add_item_button: self.add_item_button,
-            add_item: self.add_item
-
+            add_item: self.add_item,
+            add_contributer: self.add_contributer
         },
 
         filters: {
