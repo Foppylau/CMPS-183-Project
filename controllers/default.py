@@ -45,11 +45,42 @@ def get_totals():
 
         if (auth.user.email == creator):
             total_owed += item.price
+    #print(total_owed)
 
-    print(total_owed)
+    #get total of each bill
+    bill_total = 0
+    item_database = db().select(db.item.ALL)
+    post_database = db().select(db.post.ALL)
+    for post in post_database:
+        post.price = 0
+        bill_name = post.post_content
+        if bill_name is None:
+            continue
+
+        for item in item_database:
+            item_in_bill = item.bill_name
+
+            if item_in_bill is None:
+                continue
+
+            if (item_in_bill == bill_name):
+                #print(item.bill_name)
+                #print(item.price)
+                post.price += item.price
+                bill_total = post.price
+
+            db(db.post.id).update(price=post.price)
+
+        print(post.id)
+        print("bill total:")
+        print(post.post_content)
+        print(post.price)
+
+
     totals = []
     totals.append(total_owed)
     totals.append(total_owes)
+    totals.append(bill_total)
     return(totals)
 
 def get_picture():
@@ -88,8 +119,14 @@ def housemate():
     totals = get_totals()
     total_owed = totals[0]
     total_owes = totals[1]
+    bill_total = totals[2]
 
-    return dict(profile_pic=picture, logged_in=logged_in, get_user_name_from_email=get_user_name_from_email, total_owes=total_owes, total_owed=total_owed)
+    return dict(profile_pic=picture,
+                logged_in=logged_in,
+                get_user_name_from_email=get_user_name_from_email,
+                total_owes=total_owes,
+                total_owed=total_owed,
+                bill_total=bill_total)
 
 def events():
     picture = None
