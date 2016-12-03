@@ -22,7 +22,7 @@ def get_posts():
     items = []
     has_more = False
     rows = db().select(db.post.ALL, limitby=(start_idx, end_idx + 1), orderby=~db.post.created_on)
-
+    item_rows = db().select(db.item.ALL)
     for i, r in enumerate(rows):
         if i < end_idx - start_idx:
 
@@ -40,13 +40,28 @@ def get_posts():
                 circle = r.circle,
                 price = r.price,
                 status = r.status,
-                mypost = mypost
+                mypost = mypost,
+                contributors = []
             )
+            for j, s in enumerate(item_rows):
+                if r.post_content == s.bill_name:
+                    item_contributors = s.contributors
+                    if item_contributors is None:
+                        pass
+                    else:
+                        item_contributors = item_contributors.split(";")
+                        item_contributors.pop()
+                        print item_contributors
+                        for dude in item_contributors:
+                            if dude not in t['contributors']:
+                                t['contributors'].append(dude)
+                        #print "Contributors to " + r.post_content + ":"
+                        #print t['contributors']
             posts.append(t)
         else:
             has_more = True
 
-    item_rows = db().select(db.item.ALL)
+
     for i, r in enumerate(item_rows):
         t = dict(
             id = r.id,
@@ -58,6 +73,8 @@ def get_posts():
             status = r.status
         )
         items.append(t)
+
+
 
 
     logged_in = auth.user_id is not None
