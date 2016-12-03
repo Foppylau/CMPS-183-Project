@@ -52,11 +52,13 @@ def get_totals():
     item_database = db().select(db.item.ALL)
     post_database = db().select(db.post.ALL)
     for post in post_database:
-        post.price = 0
+        #post.price = 0
+        new_price = 0
         bill_name = post.post_content
         if bill_name is None:
             continue
 
+        found_items = False
         for item in item_database:
             item_in_bill = item.bill_name
 
@@ -64,12 +66,16 @@ def get_totals():
                 continue
 
             if (item_in_bill == bill_name):
-                #print(item.bill_name)
-                #print(item.price)
-                post.price += item.price
+                found_items = True
+                print(item.bill_name)
+                print(item.price)
+                new_price += item.price
                 bill_total = post.price
+                #db(db.post.id).update(price=new_price)
+                post.update_record(price=new_price)
 
-            db(db.post.id).update(price=post.price)
+        if not found_items:
+            db(db.post.id).update(price=0)
 
         print(post.id)
         print("bill total:")
