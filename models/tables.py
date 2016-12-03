@@ -27,6 +27,7 @@ db.define_table('pictures',
                 Field('file_name', 'upload')
                 )
 
+db.post.post_content.unique = True
 
 db.pictures.user_email.readable = False
 db.pictures.user_email.writable = False
