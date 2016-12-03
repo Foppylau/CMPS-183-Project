@@ -106,7 +106,7 @@ def add_contributer():
     t_id = request.vars.item_id
     row = db(db.item.id == t_id).select().first()
     print(row)
-    row.update_record(contributors=auth.user.email)
+    row.update_record(contributors=get_user_name_from_email(auth.user.email))
     return "ok"
 
 @auth.requires_signature()
