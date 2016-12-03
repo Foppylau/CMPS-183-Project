@@ -17,9 +17,8 @@
 <body class="user_container groups">
 <div class="col-lg-9" style="width:78%;">
 
-    <h2>Housemates</h2>
-
-    <ul class="nav navbar-nav navbar-right">
+    <h2 style="display: inline-block; text-align: center;">Housemates</h2>
+    <ul class="nav navbar-nav navbar-right" style="display: inline-block;">
         {{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
     </ul>
 
@@ -39,11 +38,9 @@
             <div class="bill-group" id="no_table_artist__row">
                 <div>
                     <p id="billName">Create a new bill</p>
-                    <p> Bill Name </p>
+                    <p>Bill Name</p>
                     <input class="content" id="no_table_content" v-model="form_content" placeholder="Costco, Electricity" type="text" />
-
-                    <br><br>
-                    <p> Select a category </p>
+                    <p></p>
                     <select class="content" id="no_table_artist" v-model="form_circle" placeholder="Group" type="text">
                         <option value="selected"  class="s">Select your option</option>
                         <option value="Housemates">Housemates</option>
@@ -51,15 +48,17 @@
                         <option value="Individual loans">Individual loans</option>
                         <option value="Subscriptions">Subscriptions</option>
                     </select>
+                    <div v-if="is_adding_post" v-on:click="add_post_button()" class="form-group" id="submit_record__row">
+
+                        <input  id="add_post_submit" type="submit" value="Submit" />
+
+                    </div>
 
                 </div>
-                <br><br>
-                <div v-if="is_adding_post" v-on:click="add_post_button()" id="submit_record__row">
-                    <div>
-                        <input id="add_post_submit" type="submit" value="Submit" />
-                    </div>
-                </div>
             </div>
+
+
+
         </form>
     </div>
 
@@ -68,36 +67,28 @@
 
 
                     <div class ="posts_style"  v-if="post.circle == 'Housemates'">
-
-                        <div class="billInfo" v-if="!is_editing_post">
-
-                            <div class="topRightBill">
-
-                                <div v-if="!is_adding_item">
-                                    <i class="fa fa-pencil" v-if="post.mypost" v-on:click="edit_post_button()"></i>
-                                    <i id="closeIcon" class="fa fa-times" v-if="post.mypost" v-on:click="delete_post(post.id)"></i>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="createdOn">
-                                <h2>${post.post_content}</h2>
-                                <p>Created on: ${post.created_on}</p>
-                                <br>
-
-                              <!--  <p>By ${post.user_email}</p>-->
+                        <div style="float: right;" v-if="!is_adding_item">
+                            <i class="fa fa-plus" v-if="post.mypost"style="display:inline-block; padding-right: 10px;" v-on:click="add_item_button"></i>
+                            <div v-if="!post.has_item">
+                                <i class="fa fa-trash-o" v-if="post.mypost" style="display: inline-block; " v-on:click="delete_post(post.id)"></i>
                             </div>
 
                         </div>
+
+                        <div class="billInfo" v-if="!is_editing_post">
+                            <div class="billheader">
+                                <h2>${post.post_content}</h2>
+                              <!--  <p>By ${post.user_email}</p>-->
+                                <p id="totalCost">Total: ${post.price}</p>
+                                <p id="createdOn">Created On: ${post.created_on}</p>
+                                <p id="createdOn">Members: ${post.contributors}</p>
+                            </div>
+                        </div>
+
+
                             <div v-if="post.mypost" >
-                                 <div  v-for="item in items">
-                                    <div v-if="item.bill_name == post.post_content">
-                                        <div class="item_style">
-                                            <p style="display: inline-block;">${item.item_name}</p>
-                                            <p style="display: inline-block;">${item.price}</p>
-                                            <i style="display: inline-block;" class="fa fa-trash-o" v-on:click="delete_item(item.id)"></i>
-                                        </div>
-                                    </div>
-                                </div>
+
+
                                 <!-- <form action="#" v-on:submit.prevent="add_item(post.post_content)" enctype="multipart/form-data" method="post"> -->
                                 <form action="#" v-if="is_adding_item" v-on:submit.prevent="add_item(post.id, post.post_content)" enctype="multipart/form-data" method="post">
                                     <div class="form-group">
@@ -106,16 +97,29 @@
                                     </div>
                                     <div v-on:click="add_item_button()" id="submit_record__row">
                                         <input class="btn" id="add_item_submit" type="submit" value="Submit" />
+                                        <i v-if="is_adding_item"  v-on:click="add_item_button()">
+                                            {{=icon_cancel}}
+                                        </i>
                                     </div>
-
                                 </form>
-                                <i class="fa fa-close" v-if="is_adding_item" v-on:click="add_item_button()"></i>
+
                             </div>
 
-                        <p id="totalCost">Total: ${post.price}</p>
-                        <i  v-if="!is_adding_item" id="addItemBtn" class="fa fa-plus" v-if="post.mypost" v-on:click="add_item_button"></i>
-                    </div>
+                        <div v-for="item in items">
+                            <div class="item_style" v-if="item.bill_name == post.post_content">
+                                <i style="display: inline-block; float:right;" class="fa fa-times" style="display: inline-block; float:right; " v-on:click="delete_item(item.id)"></i>
+                                <p></p>
+                                <p style="display: inline-block;">Item: ${item.item_name}</p>
+                                <p>$${item.price}</p>
+                                <i style="display: inline-block; float:left; padding-right:5px;" class="fa fa-usd" v-on:click="add_contributor(item.id)"></i>
+                                <p style="display: inline-block;" id="data"> <i class="fa fa-users"></i> ${item.contributors}</p>
 
+
+                            </div>
+                        </div>
+
+
+                    </div>
             </div>
            <!-- <div v-if="has_more" class="show_more"><button class="btn btn-default" v-on:click="get_more()">Load more</button></div>-->
         </div>
@@ -132,11 +136,13 @@
                 <a href={{=URL('default', 'settings')}}><img src="{{=URL('default', 'download', args=profile_pic)}}" width=125 height=125 ></a>
             </div>
 
-            <p v-if="logged_in"style="font-size:15px;">{{=get_user_name_from_email(auth.user.email)}}</p>
-            <p>You owe: {{=total_owes}}</p>
-            <p>Friends owe you: {{=total_owed}}</p>
+            <p v-if="logged_in" id="profileName">{{=get_user_name_from_email(auth.user.email)}}</p>
+            <p>You Owe: {{=total_owes}}</p>
+            <p>Friends Owe You: {{=total_owed}}</p>
+
 
         </div>
+        <p id="categoriesTitle">CATEGORIES</p>
         <div class="categories">
 
                 <a href={{=URL('default', 'housemate')}}><button class="housemates">Housemates</button></a>

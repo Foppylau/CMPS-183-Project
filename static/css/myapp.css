@@ -24,13 +24,119 @@
     padding:0px;
 }
 
+
 .s{
     color:white;
     font-size:0px;
     display:none;
 }
 
+/********************************************* Styling for Sidebar ************************************************/
+.sidebar{
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #B48E8D;
+    padding-top: 10px;
+}
+
+.groups{
+    background-color: #959595;
+    color: #000000;
+}
+
+.profile{
+    display: block;
+    width:100%;
+    height:235px;
+}
+
+#profileName{
+    font-size: 16px;
+    color: lightgrey;
+    text-transform: none;
+}
+
+
+#circle {
+    margin: 0 auto;
+    width: 125px;
+    height: 125px;
+    padding: 0px 0px 0px 3px;
+}
+
+img{
+    border-radius: 50%;
+    border-style:solid;
+    border-width: 2px;
+}
+
+.profile p{
+    width:200px;
+    margin: 0 auto;
+    padding: 0px 0px 0px 3px;
+    text-align: center;
+    display: block;
+    transition: 0.3s;
+    text-transform: lowercase;
+    font-size: 13px;
+    color: #FFFFFF;
+}
+/*.newsfeed {*/
+    /*background-color: #3498db;*/
+    /*color: #000000;*/
+/*}*/
+
+/*.events {*/
+    /*background-color: #e74c3c;*/
+    /*color: #000000;*/
+/*}*/
+
+/*.subscriptions {*/
+    /*background-color: #f1c40f;*/
+    /*color: #000000;*/
+/*}*/
+
+/*.loans{*/
+    /*background-color: #9b59b6;*/
+    /*color: #000000;*/
+/*}*/
+
+#categoriesTitle{
+    color: lightgrey;
+}
+
+.categories button{
+    height: 10%;
+    width: 100%;
+    margin-top: 0px;
+    text-align: center;
+    background-color: transparent;
+    color: #FFFFFF;
+    text-transform: lowercase;
+    font-size: 14px;
+}
+
+.categories button:hover{
+    background-color: #f2bf52;
+    color: #FFFFFF;
+}
+
+.categories button:active{
+    background-color: lightgrey;
+}
+
+.categories button:focus{
+    background-color: lightgrey;
+}
+
+/******************************************** End of Styling for Sidebar ******************************************/
+
 .user_container{
+    background-color: white;
     height:100%;
     width:100%;
     margin: 0px;
@@ -155,121 +261,7 @@ div.table_footer span.pagine.disabled i.fa {
     cursor: not-allowed;
 }
 
-/********************************************* Styling for Sidebar ************************************************/
-.sidebar{
-    height: 100%;
-    width: 250px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    background-color: #B48E8D;
-    padding-top: 10px;
-}
-
-.profile{
-    display: block;
-    width:100%;
-    height:235px;
-}
-
-#profileName{
-    font-size: 16px;
-    color: lightgrey;
-    text-transform: none;
-}
-
-.profile p{
-    width:200px;
-    margin: 0 auto;
-    padding: 0px 0px 0px 3px;
-    text-align: center;
-    display: block;
-    transition: 0.3s;
-    text-transform: lowercase;
-    font-size: 13px;
-    color: #FFFFFF;
-}
-
-#circle {
-    margin: 0 auto;
-    width: 125px;
-    height: 125px;
-    padding: 0px 0px 0px 3px;
-}
-
-img{
-    border-radius: 50%;
-    border-style:solid;
-    border-width: 2px;
-    border: none;
-}
-
-#categoriesTitle{
-    color: lightgrey;
-}
-.categories button{
-    height: 10%;
-    width: 100%;
-    margin-top: 0px;
-    text-align: center;
-    background-color: transparent;
-    color: #FFFFFF;
-    text-transform: lowercase;
-    font-size: 14px;
-}
-
-.categories button:hover{
-    background-color: #f2bf52;
-    color: #FFFFFF;
-}
-
-.categories button:active{
-    background-color: lightgrey;
-}
-
-.categories button:focus{
-    background-color: lightgrey;
-}
-
-.pageTitle{
-    border-bottom: 1px solid lightgrey;
-    padding-bottom: 10px;
-    text-transform: lowercase;
-}
-
-/******************************************** End of Styling for Sidebar ******************************************/
-
-
 /********************************************** All the Bills ******************************************************/
-#addBtn{
-    border-radius: 50%;
-    font-size: 15px;
-}
-
-/* Make placeholder disappear on focus */
-input:focus::-webkit-input-placeholder{ color: transparent; }
-input:focus::-moz-placeholder{ color: transparent; }
-
-.bill-group{
-    border: 2px solid lightgrey;
-    padding: 10px;
-    width: 50%;
-    text-align: center;
-}
-
-.bill-group p{
-    font-size: 15px;
-}
-
-#billName{
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.bill-group input[type=text]{
-    text-align: center;
-}
 
 .result_table{
     margin-top: 0px;
@@ -284,11 +276,29 @@ input:focus::-moz-placeholder{ color: transparent; }
 
 /******************************************* End of All the Bills ************************************************/
 
-
 /*************************************************Each Bill******************************************************/
 .billInfo{
     width:100%;
+    border-bottom-color: #0a001f;
+    border-bottom-width: thin;
+    border-bottom-style: solid;
     text-align:center;
+}
+
+#totalCost{
+
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+#createdOn{
+    position: center;
+    width:70%; /* 70% of the parent*/
+    margin:10px auto;
+    text-transform: lowercase;
+    font-size: 12px;
+
 }
 
 .billInfo i{
@@ -300,84 +310,36 @@ input:focus::-moz-placeholder{ color: transparent; }
     border-color: #cccccc;
     border-style: solid;
     border-width: 1px;
-    background: #FFFFFF;
-    width: 30em;
+    background: #eeeeee;
+    overflow: auto;
+    height: 400px;
+    width: 35em;
     margin: 10px;
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 15px;
     opacity: 0.8;
 }
 
 .item_style{
-    background: lightgrey;
-    width: 200%;
-    height: 30px;
+    margin: 10px;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    background: #eeeeee;
     padding: 5px;
-    postition: relative;
-    border-radius: 5px;
-    float: left;
-
+    border-radius: 15px;
+    opacity: 0.8;
 }
 
-.price_style{
-    background: lightgrey;
-    width: 100%;
-    height: 30px;
-    position: relative;
-    padding: 5px;
-    border-radius: 5px;
-
-}
-
-.addNew{
-    display: table;
-}
-
-#addNewItem{
-    width: 300px;
-    display: table-cell;
-}
-
-#addNewPrice{
-    width: 50px;
-    display: table-cell;
-}
-
-.price{
-    width: 25%;
-    float: right;
-}
-
-#totalCost{
-    float: right;
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-#addItemBtn{
-    float: left;
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: bold;
-}
-.createdOn{
+.billheader{
     position: center;
     width:70%; /* 70% of the parent*/
     margin:10px auto;
-    text-transform: lowercase;
-    font-size: 12px;
 
 }
 
-.topRightBill{
-    float: right;
-}
-
-#closeIcon{
-    font-size: 20px;
-    float: right;
-    padding-left:10px;
+.billfooter{
+    width:100%;
 }
 
 /*************************************************End  of Each Bill************************************************/
@@ -472,4 +434,45 @@ html, body {
     width: 100%;
 }
 
+#data {
+    width: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.bill-group{
+    border: 2px solid lightgrey;
+    padding: 10px;
+    width: 50%;
+    text-align: center;
+}
+
+.bill-group p{
+    font-size: 15px;
+}
+
+.bill-group input[type=text]{
+    text-align: center;
+}
+
+#billName{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#data:hover{
+    overflow: visible;
+    white-space: normal;
+    width: auto;
+    background-color:#FFF;
+}
+#data:hover+div {
+    margin-top:20px;
+}
+
+#addBtn{
+    border-radius: 50%;
+    font-size: 15px;
+}
 /***************************End of Welcome Page *****************************/

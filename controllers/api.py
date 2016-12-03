@@ -41,10 +41,13 @@ def get_posts():
                 price = r.price,
                 status = r.status,
                 mypost = mypost,
-                contributors = []
+                contributors = "",
+                has_item = False
+
             )
             for j, s in enumerate(item_rows):
                 if r.post_content == s.bill_name:
+                    t['has_item'] = True;
                     item_contributors = s.contributors
                     if item_contributors is None:
                         pass
@@ -53,8 +56,8 @@ def get_posts():
                         item_contributors.pop()
                         print item_contributors
                         for dude in item_contributors:
-                            if dude not in t['contributors']:
-                                t['contributors'].append(dude)
+                            if dude not in t['contributors'].split(", "):
+                                t['contributors'] += dude + ", "
                         #print "Contributors to " + r.post_content + ":"
                         #print t['contributors']
             posts.append(t)

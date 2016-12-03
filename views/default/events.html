@@ -6,7 +6,10 @@
     var posts_url = "{{=URL('api', 'get_posts')}}";
     var add_post_url = "{{=URL('api', 'add_post', user_signature=True)}}";
     var del_post_url = "{{=URL('api', 'del_post', user_signature=True)}}";
+    var del_item_url = "{{=URL('api', 'del_item', user_signature=True)}}";
     var edit_post_url = "{{=URL('api', 'edit_post', user_signature=True)}}";
+    var add_item_url = "{{=URL('api', 'add_item', user_signature=True)}}";
+    var add_contributor_url = "{{=URL('api', 'add_contributor', user_signature=True)}}";
 </script>
 {{end}}
 
@@ -21,21 +24,23 @@
 
     <div id="vue-div" class="bills">
         <div class="button_bar">
-            <button v-if="!is_adding_post" class="btn btn-danger btn-sm" v-on:click="add_post_button()" v-bind:class="{'disabled': !logged_in}">
-                {{=icon_add}}Add Bill
+            <button v-if="!is_adding_post" id="addBtn" class="btn btn-danger btn-sm" v-on:click="add_post_button()" v-bind:class="{'disabled': !logged_in}">
+                {{=icon_add}}
             </button>
-            <button v-if="is_adding_post" class="btn btn-warning btn-sm" v-on:click="add_post_button()">
-                {{=icon_cancel}}Cancel
+            <button v-if="is_adding_post" id="addBtn" class="btn btn-warning btn-sm" v-on:click="add_post_button()">
+                {{=icon_cancel}}
             </button>
         </div>
 
 
     <div v-if="is_adding_post" id="add_post_div">
         <form action="#" v-on:submit.prevent="add_post()" enctype="multipart/form-data" method="post">
-            <div class="form-group" id="no_table_artist__row">
+            <div class="bill-group" id="no_table_artist__row">
                 <div>
-                    <input class="content" id="no_table_content" v-model="form_content" placeholder="Bill Name" type="text" />
-                   <!-- <input class="content" id="no_table_artist" v-model="form_payer" placeholder="Payer" type="text" />-->
+                    <p id="billName">Create a new bill</p>
+                    <p>Bill Name</p>
+                    <input class="content" id="no_table_content" v-model="form_content" placeholder="Costco, Electricity" type="text" />
+                    <p></p>
                     <select class="content" id="no_table_artist" v-model="form_circle" placeholder="Group" type="text">
                         <option value="selected"  class="s">Select your option</option>
                         <option value="Housemates">Housemates</option>
@@ -43,22 +48,16 @@
                         <option value="Individual loans">Individual loans</option>
                         <option value="Subscriptions">Subscriptions</option>
                     </select>
-                  <!--  <input class="content" id="no_table_artist" v-model="form_bill" placeholder="Bill Name" type="text" />-->
-                    <input class="content" id="no_table_artist" v-model="form_price" placeholder="Price: $" type="decimal" />
-                    <select class="content" id="no_table_artist" v-model="form_status" placeholder="Group" type="text">
-                        <option value="Pay">Pay</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Confirmed">Confirmed</option>
-                        </select>
+                    <div v-if="is_adding_post" v-on:click="add_post_button()" class="form-group" id="submit_record__row">
+
+                        <input  id="add_post_submit" type="submit" value="Submit" />
+
+                    </div>
 
                 </div>
             </div>
 
-            <div v-if="is_adding_post" v-on:click="add_post_button()" class="form-group" id="submit_record__row">
-                <div>
-                    <input class="btn" id="add_post_submit" type="submit" value="Submit" />
-                </div>
-            </div>
+
 
         </form>
     </div>
@@ -68,44 +67,58 @@
 
 
                     <div class ="posts_style"  v-if="post.circle == 'Events'">
+                        <div style="float: right;" v-if="!is_adding_item">
+                            <i class="fa fa-plus" v-if="post.mypost"style="display:inline-block; padding-right: 10px;" v-on:click="add_item_button"></i>
+                            <div v-if="!post.has_item">
+                                <i class="fa fa-trash-o" v-if="post.mypost" style="display: inline-block; " v-on:click="delete_post(post.id)"></i>
+                            </div>
+
+                        </div>
 
                         <div class="billInfo" v-if="!is_editing_post">
                             <div class="billheader">
                                 <h2>${post.post_content}</h2>
                               <!--  <p>By ${post.user_email}</p>-->
-                                <p>Total Price: ${post.price}</p>
-                                <p>Status: ${post.status}</p>
-                            </div>
-                            <div class="billfooter">
-                                <p style="display: inline-block; float:left; ">${post.created_on}</p>
-                                <i class="fa fa-trash-o" v-if="post.mypost" style="display: inline-block; float:right; " v-on:click="delete_post(post.id)"></i>
-                                <i class="fa fa-pencil" v-if="post.mypost"style="display:inline-block; float:right;" v-on:click="edit_post_button()" v-bind:class="{'disabled': !logged_in}"></i>
-                                <i class="fa fa-plus" v-if="post.mypost"style="display:inline-block; float:right;" aria-hidden="true"></i>
+                                <p id="totalCost">Total: $${post.price}</p>
+                                <p id="createdOn">Created On: ${post.created_on}</p>
+                                <p id="createdOn">Members: ${post.contributors}</p>
                             </div>
                         </div>
 
-                        <div v-if="is_editing_post" id="edit_post_div">
-                            <form action="#" v-on:submit.prevent="edit_post(post.id)" class="form-horizontal" enctype="multipart/form-data" method="post">
-                                <div class="editing_content">
-                                    <textarea class="string" id="no_table_content" v-model="post.post_content" value="pre-fill" type="text"> </textarea>
-                                    <textarea class=" string" id="no_table_content" v-model="post.price" value="pre-fill" type="text"> </textarea>
-                                    <textarea class="string" id="no_table_content" v-model="post.status" value="pre-fill" type="text"> </textarea>
-                                </div>
-                                <div v-if="is_editing_post" v-on:click="edit_post_button()" id="submit_record__row">
-                                    <input class="btn" id="edit_post_submit" type="submit" value="Submit" />
-                                </div>
-                                <button class="btn btn-warning btn-sm" v-on:click="edit_post_button()">
-                                {{=icon_cancel}}Cancel
-                                </button>
-                            </form>
-                        </div>
+
+                            <div v-if="post.mypost" >
 
 
-                        <div class="item_style">
-                            <div class="item">
+                                <!-- <form action="#" v-on:submit.prevent="add_item(post.post_content)" enctype="multipart/form-data" method="post"> -->
+                                <form action="#" v-if="is_adding_item" v-on:submit.prevent="add_item(post.id, post.post_content)" enctype="multipart/form-data" method="post">
+                                    <div class="form-group">
+                                        <input class="content" id="no_table_content" v-model="form_item_name" placeholder="Item Name" type="text">
+                                        <input class="content" id="no_table_artist" v-model="form_price" placeholder="Price: $" type="decimal" />
+                                    </div>
+                                    <div v-on:click="add_item_button()" id="submit_record__row">
+                                        <input class="btn" id="add_item_submit" type="submit" value="Submit" />
+                                    </div>
+                                    <i v-if="is_adding_item"  v-on:click="add_item_button()">
+                                        {{=icon_cancel}}
+                                    </i>
+                                </form>
+
+                            </div>
+
+                        <div v-for="item in items">
+                            <div class="item_style" v-if="item.bill_name == post.post_content">
+                                <i style="display: inline-block; float:right;" class="fa fa-times" style="display: inline-block; float:right; " v-on:click="delete_item(item.id)"></i>
+                                <p></p>
+                                <p style="display: inline-block;">Item: ${item.item_name}</p>
+                                <p>$${item.price}</p>
+                                <i style="display: inline-block; float:left; padding-right:5px;" class="fa fa-usd" v-on:click="add_contributor(item.id)"></i>
+                                <p style="display: inline-block;" id="data"> <i class="fa fa-users"></i> ${item.contributors}</p>
+
 
                             </div>
                         </div>
+
+
                     </div>
             </div>
            <!-- <div v-if="has_more" class="show_more"><button class="btn btn-default" v-on:click="get_more()">Load more</button></div>-->
@@ -123,11 +136,13 @@
                 <a href={{=URL('default', 'settings')}}><img src="{{=URL('default', 'download', args=profile_pic)}}" width=125 height=125 ></a>
             </div>
 
-            <p v-if="logged_in"style="font-size:15px;">{{=get_user_name_from_email(auth.user.email)}}</p>
-            <p style="text-decoration-color: red;">Owes: </p>
-            <p style="text-decoration-color: blue;">Pending: </p>
+            <p v-if="logged_in" id="profileName">{{=get_user_name_from_email(auth.user.email)}}</p>
+            <p>You Owe: {{=total_owes}}</p>
+            <p>Friends Owe You: {{=total_owed}}</p>
+
 
         </div>
+        <p id="categoriesTitle">CATEGORIES</p>
         <div class="categories">
 
                 <a href={{=URL('default', 'housemate')}}><button class="housemates">Housemates</button></a>

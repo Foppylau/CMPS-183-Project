@@ -75,7 +75,8 @@ def get_totals():
                 post.update_record(price=new_price)
 
         if not found_items:
-            db(db.post.id).update(price=0)
+            #db(db.post.id).update(price=0)
+            pass
 
         print(post.id)
         print("bill total:")
@@ -137,66 +138,84 @@ def housemate():
                 total_owed=total_owed)
 
 def events():
-    picture = None
-    if auth.user is not None:
-        row = db(db.pictures.user_email == auth.user.email).select().first()
-        if row is not None:
-            picture = row.file_name
-
     logged_in = auth.user_id is not None
-
     if (not logged_in):
         redirect(URL('default', 'user'))
+    picture = get_picture()
 
-    return dict(profile_pic=picture, logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
+    totals = get_totals()
+    total_owed = totals[0]
+    total_owes = totals[1]
+
+
+    total_owed = str(round(total_owed, 2))
+    total_owes = str(round(total_owes, 2))
+
+    return dict(profile_pic=picture,
+                logged_in=logged_in,
+                get_user_name_from_email=get_user_name_from_email,
+                total_owes=total_owes,
+                total_owed=total_owed)
 
 def individual_loans():
-    picture = None
-    if auth.user is not None:
-        row = db(db.pictures.user_email == auth.user.email).select().first()
-        if row is not None:
-            picture = row.file_name
-
     logged_in = auth.user_id is not None
-
     if (not logged_in):
         redirect(URL('default', 'user'))
+    picture = get_picture()
 
-    return dict(profile_pic=picture, logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
+    totals = get_totals()
+    total_owed = totals[0]
+    total_owes = totals[1]
+
+
+    total_owed = str(round(total_owed, 2))
+    total_owes = str(round(total_owes, 2))
+
+    return dict(profile_pic=picture,
+                logged_in=logged_in,
+                get_user_name_from_email=get_user_name_from_email,
+                total_owes=total_owes,
+                total_owed=total_owed)
 
 def subscriptions():
-    picture = None
-    if auth.user is not None:
-        row = db(db.pictures.user_email == auth.user.email).select().first()
-        if row is not None:
-            picture = row.file_name
-
     logged_in = auth.user_id is not None
-
-    if picture is None:
-        d = 'default'
-        row = db(db.pictures.user_email == 'default@default.com').select().first()
-        if row is not None:
-            picture = row.file_name
-
     if (not logged_in):
         redirect(URL('default', 'user'))
+    picture = get_picture()
 
-    return dict(profile_pic=picture, logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
+    totals = get_totals()
+    total_owed = totals[0]
+    total_owes = totals[1]
+
+
+    total_owed = str(round(total_owed, 2))
+    total_owes = str(round(total_owes, 2))
+
+    return dict(profile_pic=picture,
+                logged_in=logged_in,
+                get_user_name_from_email=get_user_name_from_email,
+                total_owes=total_owes,
+                total_owed=total_owed)
 
 def newsfeed():
-    picture = None
-    if auth.user is not None:
-        row = db(db.pictures.user_email == auth.user.email).select().first()
-        if row is not None:
-            picture = row.file_name
-
     logged_in = auth.user_id is not None
-
     if (not logged_in):
         redirect(URL('default', 'user'))
+    picture = get_picture()
 
-    return dict(profile_pic=picture, logged_in=logged_in, get_user_name_from_email=get_user_name_from_email)
+    totals = get_totals()
+    total_owed = totals[0]
+    total_owes = totals[1]
+
+
+    total_owed = str(round(total_owed, 2))
+    total_owes = str(round(total_owes, 2))
+
+    return dict(profile_pic=picture,
+                logged_in=logged_in,
+                get_user_name_from_email=get_user_name_from_email,
+                total_owes=total_owes,
+                total_owed=total_owed)
 
 def settings():
     grid = SQLFORM(db.pictures, deletable=True)
