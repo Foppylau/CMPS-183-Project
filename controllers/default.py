@@ -27,10 +27,10 @@ def get_totals():
 
         if payers is None:
             continue
-       # payers = payers.split()
+        payers = payers.split(";")
         print("payers:" )
         print(payers)
-        number_of_payers = len(payers)
+        number_of_payers = len(payers) - 1
         if (get_user_name_from_email(auth.user.email) in payers):
             total_owes += (item.price / number_of_payers)
 

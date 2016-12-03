@@ -106,7 +106,14 @@ def add_contributor():
     t_id = request.vars.item_id
     row = db(db.item.id == t_id).select().first()
     print(row)
-    row.update_record(contributors=get_user_name_from_email(auth.user.email))
+    if (row.contributors is None):
+        new_contributors = get_user_name_from_email(auth.user.email) + ";"
+    else:
+        if get_user_name_from_email(auth.user.email) in row.contributors.split(";"):
+            print "already in contributors"
+            return "ok"
+        new_contributors = row.contributors + get_user_name_from_email(auth.user.email) + ";"
+    row.update_record(contributors=new_contributors)
     return "ok"
 
 @auth.requires_signature()
