@@ -30,8 +30,8 @@ var app = function() {
         });
     };
 
-    self.add_contributer = function(item_id){
-        $.post(add_contributer_url,
+    self.add_contributor = function(item_id){
+        $.post(add_contributor_url,
             {
                 item_id: item_id,
                 contributors: self.vue.form_contributors
@@ -39,7 +39,7 @@ var app = function() {
             function (data) {
                 if(!data.idx)
                     self.get_posts();
-                $.web2py.enableElement($("#add_contributer"));
+                $.web2py.enableElement($("#add_contributor"));
                 self.vue.contributor.unshift(data.contributors);
             });
     }
@@ -177,7 +177,7 @@ var app = function() {
             is_adding_item: false,
             posts: [],
             items: [],
-            contributor: [],
+            contributors: [],
             logged_in: false,
             has_more: false,
             selected_idx: null,
@@ -201,7 +201,7 @@ var app = function() {
             delete_item: self.delete_item,
             add_item_button: self.add_item_button,
             add_item: self.add_item,
-            add_contributer: self.add_contributer
+            add_contributor: self.add_contributor
         },
 
         filters: {

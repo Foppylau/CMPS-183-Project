@@ -102,7 +102,7 @@ def edit_post():
 
 
 @auth.requires_signature()
-def add_contributer():
+def add_contributor():
     t_id = request.vars.item_id
     row = db(db.item.id == t_id).select().first()
     print(row)
