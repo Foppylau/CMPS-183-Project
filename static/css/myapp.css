@@ -24,109 +24,13 @@
     padding:0px;
 }
 
-.content{
-    border-radius: 10px;
-}
-
-
 .s{
     color:white;
     font-size:0px;
     display:none;
 }
 
-/********************************************* Styling for Sidebar ************************************************/
-.sidebar{
-    height: 100%;
-    width: 290px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    background-color: #5C7F6E;
-    padding-top: 10px;
-    opacity: 0.8;
-}
-
-.groups{
-    background-color: #959595;
-    color: #000000;
-}
-
-.profile{
-    display: block;
-    width:100%;
-    height:235px;
-}
-
-#circle {
-    margin: 0 auto;
-    width: 125px;
-    height: 125px;
-    padding: 0px 0px 0px 3px;
-}
-
-img{
-    border-radius: 50%;
-    border-style:solid;
-    border-width: 2px;
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg);
-}
-
-.profile p{
-    width:120px;
-    margin: 0 auto;
-    padding: 0px 0px 0px 3px;
-    text-decoration-color: red;
-    text-align: center;
-    display: block;
-    transition: 0.3s
-}
-
-/*.newsfeed {*/
-    /*background-color: #3498db;*/
-    /*color: #000000;*/
-/*}*/
-
-/*.events {*/
-    /*background-color: #e74c3c;*/
-    /*color: #000000;*/
-/*}*/
-
-/*.subscriptions {*/
-    /*background-color: #f1c40f;*/
-    /*color: #000000;*/
-/*}*/
-
-/*.loans{*/
-    /*background-color: #9b59b6;*/
-    /*color: #000000;*/
-/*}*/
-
-.categories{
-    border-top-style:solid;
-    overflow-y:scroll;
-    height:700px;
-}
-
-.categories button{
-    height: 12%;
-    width: 100%;
-    text-align: center;
-}
-
-.categories a{
-    overflow-y:scroll;
-}
-
-/******************************************** End of Styling for Sidebar ******************************************/
-
 .user_container{
-    background:url("user_background.JPG") no-repeat center center fixed;
     height:100%;
     width:100%;
     margin: 0px;
@@ -251,7 +155,121 @@ div.table_footer span.pagine.disabled i.fa {
     cursor: not-allowed;
 }
 
+/********************************************* Styling for Sidebar ************************************************/
+.sidebar{
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #B48E8D;
+    padding-top: 10px;
+}
+
+.profile{
+    display: block;
+    width:100%;
+    height:235px;
+}
+
+#profileName{
+    font-size: 16px;
+    color: lightgrey;
+    text-transform: none;
+}
+
+.profile p{
+    width:200px;
+    margin: 0 auto;
+    padding: 0px 0px 0px 3px;
+    text-align: center;
+    display: block;
+    transition: 0.3s;
+    text-transform: lowercase;
+    font-size: 13px;
+    color: #FFFFFF;
+}
+
+#circle {
+    margin: 0 auto;
+    width: 125px;
+    height: 125px;
+    padding: 0px 0px 0px 3px;
+}
+
+img{
+    border-radius: 50%;
+    border-style:solid;
+    border-width: 2px;
+    border: none;
+}
+
+#categoriesTitle{
+    color: lightgrey;
+}
+.categories button{
+    height: 10%;
+    width: 100%;
+    margin-top: 0px;
+    text-align: center;
+    background-color: transparent;
+    color: #FFFFFF;
+    text-transform: lowercase;
+    font-size: 14px;
+}
+
+.categories button:hover{
+    background-color: #f2bf52;
+    color: #FFFFFF;
+}
+
+.categories button:active{
+    background-color: lightgrey;
+}
+
+.categories button:focus{
+    background-color: lightgrey;
+}
+
+.pageTitle{
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 10px;
+    text-transform: lowercase;
+}
+
+/******************************************** End of Styling for Sidebar ******************************************/
+
+
 /********************************************** All the Bills ******************************************************/
+#addBtn{
+    border-radius: 50%;
+    font-size: 15px;
+}
+
+/* Make placeholder disappear on focus */
+input:focus::-webkit-input-placeholder{ color: transparent; }
+input:focus::-moz-placeholder{ color: transparent; }
+
+.bill-group{
+    border: 2px solid lightgrey;
+    padding: 10px;
+    width: 50%;
+    text-align: center;
+}
+
+.bill-group p{
+    font-size: 15px;
+}
+
+#billName{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.bill-group input[type=text]{
+    text-align: center;
+}
 
 .result_table{
     margin-top: 0px;
@@ -266,14 +284,11 @@ div.table_footer span.pagine.disabled i.fa {
 
 /******************************************* End of All the Bills ************************************************/
 
+
 /*************************************************Each Bill******************************************************/
 .billInfo{
     width:100%;
-    border-bottom-color: #0a001f;
-    border-bottom-width: thin;
-    border-bottom-style: solid;
     text-align:center;
-
 }
 
 .billInfo i{
@@ -285,36 +300,84 @@ div.table_footer span.pagine.disabled i.fa {
     border-color: #cccccc;
     border-style: solid;
     border-width: 1px;
-    background: #eeeeee;
-    width: 35em;
+    background: #FFFFFF;
+    width: 30em;
     margin: 10px;
     padding: 5px;
-    border-radius: 15px;
+    border-radius: 5px;
     opacity: 0.8;
 }
 
 .item_style{
-    border-color: black;
-    border-style: solid;
-    border-width: 1px;
-    background: #eeeeee;
-    width: 70%;
-    margin: 10px;
+    background: lightgrey;
+    width: 200%;
+    height: 30px;
     padding: 5px;
-    border-radius: 15px;
-    opacity: 0.8;
+    postition: relative;
+    border-radius: 5px;
+    float: left;
 
 }
 
-.billheader{
+.price_style{
+    background: lightgrey;
+    width: 100%;
+    height: 30px;
+    position: relative;
+    padding: 5px;
+    border-radius: 5px;
+
+}
+
+.addNew{
+    display: table;
+}
+
+#addNewItem{
+    width: 300px;
+    display: table-cell;
+}
+
+#addNewPrice{
+    width: 50px;
+    display: table-cell;
+}
+
+.price{
+    width: 25%;
+    float: right;
+}
+
+#totalCost{
+    float: right;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#addItemBtn{
+    float: left;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+}
+.createdOn{
     position: center;
     width:70%; /* 70% of the parent*/
     margin:10px auto;
+    text-transform: lowercase;
+    font-size: 12px;
 
 }
 
-.billfooter{
-    width:100%;
+.topRightBill{
+    float: right;
+}
+
+#closeIcon{
+    font-size: 20px;
+    float: right;
+    padding-left:10px;
 }
 
 /*************************************************End  of Each Bill************************************************/

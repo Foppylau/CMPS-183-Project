@@ -125,14 +125,16 @@ def housemate():
     totals = get_totals()
     total_owed = totals[0]
     total_owes = totals[1]
-    bill_total = totals[2]
+
+
+    total_owed = str(round(total_owed, 2))
+    total_owes = str(round(total_owes, 2))
 
     return dict(profile_pic=picture,
                 logged_in=logged_in,
                 get_user_name_from_email=get_user_name_from_email,
                 total_owes=total_owes,
-                total_owed=total_owed,
-                bill_total=bill_total)
+                total_owed=total_owed)
 
 def events():
     picture = None
