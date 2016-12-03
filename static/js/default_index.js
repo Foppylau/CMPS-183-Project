@@ -42,7 +42,7 @@ var app = function() {
                 $.web2py.enableElement($("#add_contributor"));
                 self.vue.contributor.unshift(data.contributors);
             });
-    }
+    };
 
     self.get_more = function () {
         var num_posts = self.vue.posts.length;
@@ -165,6 +165,8 @@ var app = function() {
                 $.web2py.enableElement($("#add_item_submit"));
             });
     };
+
+
 
     self.vue = new Vue({
         el: "#vue-div",

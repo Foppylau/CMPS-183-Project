@@ -74,6 +74,7 @@ def get_totals():
                 #db(db.post.id).update(price=new_price)
                 post.update_record(price=new_price)
 
+
         if not found_items:
             db(db.post.id).update(price=0)
 
