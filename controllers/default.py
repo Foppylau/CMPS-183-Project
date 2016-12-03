@@ -31,7 +31,7 @@ def get_totals():
         print("payers:" )
         print(payers)
         number_of_payers = len(payers)
-        if (auth.user.email in payers):
+        if (get_user_name_from_email(auth.user.email) in payers):
             total_owes += (item.price / number_of_payers)
 
     # get total owed by others to you
