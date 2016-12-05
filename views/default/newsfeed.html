@@ -109,7 +109,9 @@
 
                         <div v-for="item in items">
                             <div class="item_style" v-if="item.bill_name == post.post_content">
-                                <i style="display: inline-block; float:right;" class="fa fa-times" style="display: inline-block; float:right; " v-on:click="delete_item(item.id)"></i>
+                                <div v-if="post.mypost">
+                                    <i style="display: inline-block; float:right;" class="fa fa-times" style="display: inline-block; float:right; " v-on:click="delete_item(item.id)"></i>
+                                </div>
                                 <p></p>
                                 <p style="display: inline-block;">Item: ${item.item_name}</p>
                                 <p>$${item.price}</p>
